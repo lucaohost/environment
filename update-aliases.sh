@@ -3,7 +3,7 @@ folder_before_script=$(pwd)
 
 cd /mnt/c/git/environment
 
-echo "# Paste the code below in your ~/.bashrc" > aliases.sh
+echo -e "# Paste the code below in your ~/.bashrc\n# My Aliases\n" > aliases.sh
 
 grep -A 1000000 -E ' My\s+Aliases' ~/.bashrc | tail -n +2 >> aliases.sh
 
