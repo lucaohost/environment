@@ -1,4 +1,6 @@
 # Paste the code below in your ~/.bashrc
+# My Aliases
+
 # Go directory with all Github Projects.
 alias codes='cd /mnt/c/git/'
 
