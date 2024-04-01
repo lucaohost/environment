@@ -11,7 +11,7 @@ alias rma="grep -A 1000000 -E ' My\s+Aliases' ~/.bashrc | tail -n +2"
 # Close Terminal
 alias x="exit"
 
-# Turn off computer (doesn't work on WSL)
+# Turn off computer (it doesn't work on WSL)
 alias xx="poweroff"
 
 # Update Aliases
