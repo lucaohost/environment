@@ -6,7 +6,7 @@
 alias c='cd /mnt/c/git/'
 
 # Remember my Bashes.
-alias rmb='ll ~/bashes'
+alias rmb='ls -1 /mnt/c/git/environment/*.sh'
 
 # Remeber my Aliases.
 alias rma="grep -A 1000000 -E ' My\s+Aliases' ~/.bashrc | tail -n +2"
