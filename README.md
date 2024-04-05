@@ -1,5 +1,5 @@
 # Environment
-Some environment codes to start, after format computer.
+Some environment codes to start, after format or change computer.
 
 ## Linux/WSL Aliases:
 Clone the project:
