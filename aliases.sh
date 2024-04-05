@@ -1,8 +1,9 @@
 # Paste the code below at the end of your ~/.bashrc
 # My Aliases
 
-# Go directory with all Github Projects.
-alias codes='cd /mnt/c/git/'
+# Go directory with all Codes of Github Projects.
+# c = codes
+alias c='cd /mnt/c/git/'
 
 # Remember my Bashes.
 alias rmb='ll ~/bashes'
