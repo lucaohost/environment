@@ -1,5 +1,8 @@
 Shortcut CTRL + ALT + T to WSL
-It's necessary have this file in the desktop area. If doesn't work, do this:
+
+It's necessary has the file wsl.lnk in the desktop area. 
+
+If doesn't work, do this:
 
 "First, you can create a shortcut for the WSL terminal.
 
