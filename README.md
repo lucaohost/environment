@@ -12,4 +12,9 @@ Set the aliases in the .bashrc:
 ```
 echo "source $(pwd)/aliases.sh" >> ~/.bashrc
 ```
+To see the available aliases, just type rma (Remember My Aliases):
+
+```
+rma
+```
 
