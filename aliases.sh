@@ -55,13 +55,11 @@ xs_ubuntu() {
 }
 
 # Reboot the Computer
-set_r_alias() {
-    if uname -a | grep -q "Microsoft\|WSL"; then
-        alias r="wsl.exe -d ubuntu -- powershell.exe Restart-Computer"
-    elif uname -a | grep -q "Ubuntu"; then
-        alias r="reboot"
-    fi
-}
+if uname -a | grep -q "Microsoft\|WSL"; then
+    alias r="wsl.exe -d ubuntu -- powershell.exe Restart-Computer"
+elif uname -a | grep -q "Ubuntu"; then
+    alias r="reboot"
+fi
 
 # Update Aliases
 alias ua="/mnt/c/git/environment/update-aliases.sh"
