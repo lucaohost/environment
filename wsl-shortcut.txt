@@ -2,6 +2,8 @@ Shortcut CTRL + ALT + T to WSL
 
 It's necessary has the file wsl.lnk in the desktop area. 
 
+Tips: It's kinda slow open the WSL terminal everytime, so I keep open the WSL terminal in second desktop area (not the second monitor). When I press the shortcut, Windows redirects me automatically to the WSL Terminal quickly. To paste in WSL terminal use the right click of the mouse and to copy ctrl+insert. 
+
 If doesn't work, do this:
 
 "First, you can create a shortcut for the WSL terminal.
