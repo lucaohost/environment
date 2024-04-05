@@ -24,9 +24,9 @@ set_xx_alias() {
     fi
 }
 
-# Turn off computer after N minutes
+# Turn off the computer after N minutes
 # xs = Exit Sleep
-# Ex: xs 45
+# Usage: xs 45
 xs() {
     if grep -qE "(microsoft|WSL)" /proc/version &>/dev/null && [[ "$(uname -r)" != *Microsoft* ]]; then
         xs_windows "$@"
@@ -51,6 +51,15 @@ xs_ubuntu() {
     minutes="$1"
     seconds=$((minutes * 60))
     sudo systemctl suspend
+}
+
+# Reboot the Computer
+set_r_alias() {
+    if uname -a | grep -q "Microsoft\|WSL"; then
+        alias r="wsl.exe -d ubuntu -- powershell.exe Restart-Computer"
+    elif uname -a | grep -q "Ubuntu"; then
+        alias r="reboot"
+    fi
 }
 
 # Update Aliases
