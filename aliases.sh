@@ -13,8 +13,11 @@ alias rma="grep -A 1000000 -E ' My\s+Aliases' ~/.bashrc | tail -n +2"
 # Close Terminal
 alias x="exit"
 
-# Turn off computer (It doesn't work on WSL)
-alias xx="poweroff"
+# Turn off computer
+# On Ubuntu
+# alias xx="poweroff"
+# On WSL
+alias xx="wsl.exe -d ubuntu -- powershell.exe Stop-Computer"
 
 # Update Aliases
 alias ua="/mnt/c/git/environment/update-aliases.sh"
