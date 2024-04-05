@@ -17,13 +17,11 @@ alias x="exit"
 
 # Turn off the Computer
 # xx = Double Exit
-set_xx_alias() {
-    if uname -a | grep -q "Microsoft\|WSL"; then
-        alias xx="wsl.exe -d ubuntu -- powershell.exe Stop-Computer"
-    elif uname -a | grep -q "Ubuntu"; then
-        alias xx="poweroff"
-    fi
-}
+if uname -a | grep -q "microsoft\|WSL"; then
+    alias xx="wsl.exe -d ubuntu -- powershell.exe Stop-Computer"
+elif uname -a | grep -q "Ubuntu"; then
+    alias xx="poweroff"
+fi
 
 # Turn off the computer after N minutes
 # xs = Exit Sleep
