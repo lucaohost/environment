@@ -11,23 +11,46 @@ alias rmb='ll ~/bashes'
 alias rma="grep -A 1000000 -E ' My\s+Aliases' ~/.bashrc | tail -n +2"
 
 # Close Terminal
+# x = Exit
 alias x="exit"
 
-# Turn off computer
-# On Ubuntu
-# alias xx="poweroff"
-# On WSL
-alias xx="wsl.exe -d ubuntu -- powershell.exe Stop-Computer"
+# Turn off the Computer
+# xx = Double Exit
+set_xx_alias() {
+    if uname -a | grep -q "Microsoft\|WSL"; then
+        alias xx="wsl.exe -d ubuntu -- powershell.exe Stop-Computer"
+    elif uname -a | grep -q "Ubuntu"; then
+        alias xx="poweroff"
+    fi
+}
 
 # Turn off computer after N minutes
+# xs = Exit Sleep
+# Ex: xs 45
 xs() {
+    if grep -qE "(microsoft|WSL)" /proc/version &>/dev/null && [[ "$(uname -r)" != *Microsoft* ]]; then
+        xs_windows "$@"
+    else
+        xs_ubuntu "$@"
+    fi
+}
+xs_windows() {
     if [[ -z "$1" ]]; then
-        echo "Usage: xs <minutes>"
+        echo "Usage: xs_windows <minutes>"
         return 1
     fi
     minutes="$1"
     seconds=$((minutes * 60))
     wsl.exe -d ubuntu -- powershell.exe "Start-Sleep -Seconds $seconds; Stop-Computer"
+}
+xs_ubuntu() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: xs_ubuntu <minutes>"
+        return 1
+    fi
+    minutes="$1"
+    seconds=$((minutes * 60))
+    sudo systemctl suspend
 }
 
 # Update Aliases
