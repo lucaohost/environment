@@ -72,4 +72,3 @@ gu() {
     git push
     echo "$commit_msg"
 }
-#test
