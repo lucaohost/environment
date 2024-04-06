@@ -1,5 +1,5 @@
 # c   = Codes (Go directory with all Codes of Github Projects)
-alias c='cd /mnt/c/git/'
+alias c='cd $LUCAO_ENV && cd ..'
 
 # rmb = Remember my Bashes
 alias rmb="ls -1 $LUCAO_ENV/*.sh"
