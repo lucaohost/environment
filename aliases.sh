@@ -2,10 +2,10 @@
 alias c='cd /mnt/c/git/'
 
 # rmb = Remember my Bashes
-alias rmb='ls -1 /mnt/c/git/environment/*.sh'
+alias rmb="ls -1 $LUCAO_ENV/*.sh"
 
 # rma = Remeber my Aliases
-alias rma="grep -E '^#' /mnt/c/git/environment/aliases.sh"
+alias rma="grep -E '^#' $LUCAO_ENV/aliases.sh"
 
 # x   = Exit (Close Terminal)
 alias x="exit"
@@ -52,10 +52,10 @@ elif uname -a | grep -q "Ubuntu"; then
 fi
 
 # ua  = Update Aliases
-alias ua="/mnt/c/git/environment/update-aliases.sh"
+alias ua="$LUCAO_ENV/update-aliases.sh"
 
 # ea  = Edit Aliases
-alias ea="nano /mnt/c/git/environment/aliases.sh"
+alias ea="nano $LUCAO_ENV/aliases.sh"
 
 # eb  = Edit ~/.bashrc
 alias eb="nano ~/.bashrc"
