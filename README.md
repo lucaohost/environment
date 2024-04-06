@@ -30,7 +30,7 @@ https://github.com/lucaohost/environment/blob/main/vscode-keybindings.json
 * If you want to open more than one, you can use the default key binding CTRL + SHIFT + '.
 
 ## WSL Shortcut
-To open the WSK terminal on Windows using CTRL+ALT+T like Ubuntu, you need to do this:
+To open the WSL terminal on Windows using CTRL+ALT+T like Ubuntu, you need to do this:
 
 Download the file wsl.lnk and paste in your Desktop Area:
 
