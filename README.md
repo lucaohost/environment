@@ -33,16 +33,16 @@ https://github.com/lucaohost/environment/blob/main/vscode-keybindings.json
 
 * These key bindings will override the defaults.
 * CTRL+Y now will open and minimize the terminal. Note that it will keep only one terminal open.
-* If you want to open more than one, you can use the default key binding CTRL + SHIFT + '.
+* If you want to open more than one, you can use the default key binding CTRL+SHIFT+'.
 
 ## WSL Shortcut
 To open the WSL terminal on Windows using CTRL+ALT+T like Ubuntu, you need to do this:
 
-Download the file wsl.lnk and paste in your Desktop Area:
+Download the file wsl.lnk and paste in your Desktop Area (it's a Window's shortcut):
 
 https://github.com/lucaohost/environment/blob/main/wsl.lnk
 
-Press CTRL + ALT + T  to test it. If doesn't work, delete this file and follow these steps:
+Press CTRL+ALT+T to test it. If doesn't work, delete this file and follow these steps:
 
 1. Right-click on an empty area of your desktop and choose 'New' > 'Shortcut'.
 2. In the window that appears, type the following command:
