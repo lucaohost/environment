@@ -7,9 +7,15 @@ Clone the project:
 ```
 git clone git@github.com:lucaohost/environment.git
 ```
-
+Go to projects directory:
+```
+cd environment
+```
+Set the environemnt variable containing the project's path:
+```
+echo export "LUCAO_ENV='$(pwd)'" >> ~/.bashrc
+```
 Set the aliases in the .bashrc:
-
 ```
 echo "source $(pwd)/aliases.sh" >> ~/.bashrc
 ```
