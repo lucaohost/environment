@@ -70,4 +70,6 @@ gu() {
     git add -A
     git commit -m "$commit_msg"
     git push
+    echo "$commit_msg"
 }
+
