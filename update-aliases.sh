@@ -1,7 +1,7 @@
 #!/bin/bash
 folder_before_script=$(pwd)
 
-cd /mnt/c/git/environment
+cd $LUCAO_ENV
 
 git add aliases.sh > /dev/null 2>&1
 
