@@ -52,9 +52,9 @@ wsl.exe
 Now, whenever you press Ctrl+Alt+T, the WSL terminal will be opened."
 
 ### Tips
-1. It's kinda slow open the WSL terminal everytime, so I keep open the WSL terminal in second desktop area (not the second monitor).
-   When I press the shortcut, Windows redirects me quickly to the WSL Terminal.
-2. To paste in WSL terminal use the right click of the mouse and to copy Ctrl+Insert.
+1. It's kinda slow open the WSL terminal everytime, so I keep open the WSL terminal and when I press the shortcut,
+   Windows redirects me quickly to the WSL Terminal.
+3. To paste in WSL terminal use the right click of the mouse and to copy Ctrl+Insert.
 
 
 
