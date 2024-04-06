@@ -59,3 +59,15 @@ alias ea="nano /mnt/c/git/environment/aliases.sh"
 
 # eb  = Edit ~/.bashrc
 alias eb="nano ~/.bashrc"
+
+# gu = Github Update (Commit All files and Push) | Usage: gu My commit message
+gu() {
+    local commit_msg=""
+    for param in "$@"; do
+        commit_msg="$commit_msg$param "
+    done
+    commit_msg="${commit_msg%?}" #remove last white space
+    git add -A
+    git commit -m "$commit_msg"
+    git push
+}
