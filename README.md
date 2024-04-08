@@ -19,6 +19,8 @@ Set the aliases in the .bashrc:
 ```
 echo "source $(pwd)/aliases.sh" >> ~/.bashrc
 ```
+**Close the terminal and open again, to reflect the changes.**
+
 To see the available aliases, just type rma (Remember My Aliases):
 
 ```
