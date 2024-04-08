@@ -19,7 +19,7 @@ Set the aliases in the .bashrc:
 ```
 echo "source $(pwd)/aliases.sh" >> ~/.bashrc
 ```
-**Close the terminal and open again, to reflect the changes.**
+![image](https://github.com/lucaohost/environment/assets/31621714/b0e384df-02a1-4674-9b91-9d84c75ca4cc)
 
 To see the available aliases, just type rma (Remember My Aliases):
 
