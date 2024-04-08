@@ -73,19 +73,22 @@ gu() {
     echo "$commit_msg"
 }
 
-# gcm  = Goes to main/master branch
-alias gcm='git checkout $(git_main_branch)'
+# cl  = Clear
+alias cl=clear
 
-# gcd  = Goes to develop branch
+# gcm = Goes to main branch
+alias gcm='git checkout main'
+
+# gcd = Goes to develop branch
 alias gcd='git checkout $(git branch --list develop || echo dev)'
 
-# gp   = Push commits 
+# gp  = Push commits 
 alias gp='git push'
 
-# gbd  = Delete Branch
+# gbd = Delete Branch
 alias gbd='git branch -d'
 
-# gbdd = Delete Branch forcefully, even if it contains unmerged changes
+# gbD = Delete Branch forcefully, even if it contains unmerged changes
 alias gbdd='git branch -D'
 
 # gcb = Create a new branch
@@ -105,3 +108,9 @@ alias gst='git status'
 
 # gpu = Git Push -u origin
 alias gpu='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+
+# ~   = cd ~
+alias ~="cd ~"
+
+# ..  = cd ..
+alias ".."="cd .."
