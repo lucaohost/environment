@@ -7,9 +7,6 @@ alias rmb="ls -1 $LUCAO_ENV/*.sh"
 # rma = Remeber my Aliases
 alias rma="grep -E '^#' $LUCAO_ENV/aliases.sh"
 
-# bkl = Do Backup Locally of Changed Files
-alias bkl="$LUCAO_ENV/backup-changed-files.sh"
-
 # x   = Exit (Close Terminal)
 alias x="exit"
 
@@ -118,7 +115,10 @@ alias ~="cd ~"
 # ..  = cd ..
 alias ".."="cd .."
 
-# bkg = Do a Github Backup
+# bkl = Do Local Backup of Changed Files
+alias bkl="$LUCAO_ENV/backup-changed-files.sh"
+
+# bkg = Do Github Backup of Changed Files
 bkg() {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     git stash
