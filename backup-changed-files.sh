@@ -36,4 +36,4 @@ for file in $untracked_files; do
     echo "Copied: $file"
 done
 
-echo "Copy process completed."
+echo "Local Backup Process Completed in $HOME/Documents/BackupCodes/$destination_directory"
