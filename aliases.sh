@@ -41,6 +41,7 @@ xs_ubuntu() {
     fi
     minutes="$1"
     seconds=$((minutes * 60))
+    sudo sleep "$seconds"
     sudo systemctl suspend
 }
 
