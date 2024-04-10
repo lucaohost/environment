@@ -26,7 +26,7 @@ To see the available aliases, just type rma (Remember My Aliases):
 ```
 rma
 ```
-![image](https://github.com/lucaohost/environment/assets/31621714/ca807f71-a1f0-4fb5-b621-8b3811c2370e)
+![image](https://github.com/lucaohost/environment/assets/31621714/c5b3344f-9485-4907-9b1d-86244e78d648)
 
 ## VS Code Key Bindings
 In VS Code CTRL+Shift+P > Open Keyboard Shortcuts (JSON) and paste the content of:
