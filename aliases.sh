@@ -51,11 +51,11 @@ elif uname -a | grep -q "Ubuntu"; then
     alias r="reboot"
 fi
 
-# ua  = Update Aliases
-alias ua="$LUCAO_ENV/update-aliases.sh"
-
 # ea  = Edit Aliases
 alias ea="nano $LUCAO_ENV/aliases.sh"
+
+# ua  = Update Aliases
+alias ua="$LUCAO_ENV/update-aliases.sh"
 
 # eb  = Edit ~/.bashrc
 alias eb="nano ~/.bashrc"
@@ -115,10 +115,10 @@ alias ~="cd ~"
 # ..  = cd ..
 alias ".."="cd .."
 
-# bkl = Do Local Backup of Changed Files
+# bkl = Backup Locally of Changed Files
 alias bkl="$LUCAO_ENV/backup-changed-files.sh"
 
-# bkg = Do Github Backup of Changed Files
+# bkg = Backup in Github of Changed Files
 bkg() {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     git stash
