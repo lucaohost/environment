@@ -7,6 +7,9 @@ alias rmb="ls -1 $LUCAO_ENV/*.sh"
 # rma = Remeber my Aliases
 alias rma="grep -E '^#' $LUCAO_ENV/aliases.sh"
 
+# bkp = Do Backup of changed files
+alias bkp="$LUCAO_ENV/backup-changed-files.sh"
+
 # x   = Exit (Close Terminal)
 alias x="exit"
 
