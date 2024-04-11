@@ -126,7 +126,7 @@ alias gl='git pull'
 alias gst='git status'
 
 # gpu = Git Push -u origin
-alias gpu='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 
 # ~   = cd ~
 alias ~="cd ~"
