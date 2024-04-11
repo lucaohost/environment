@@ -102,6 +102,20 @@ alias gcb='git checkout -b'
 # gco = Checkout to another branch
 alias gco='git checkout'
 
+_git_checkout_complete() {
+  # Get current word
+  local current_word="${COMP_WORDS[COMP_CWORD]}"
+  # Get list of branches
+  local branches=$(git branch --list "${current_word}*" | sed 's/\*//g' | awk '{$1=$1};1')
+  # Set completions to available branches
+  COMPREPLY=($(compgen -W "$branches" -- "$current_word"))
+}
+
+complete -o default -F _git_checkout_complete gco
+complete -o default -F _git_checkout_complete gbd
+complete -o default -F _git_checkout_complete gbD
+
+
 # gaa = Add all changes to commit
 alias gaa='git add --all'
 
@@ -139,8 +153,8 @@ bkg() {
     echo "Github Backup Completed in branch: ${bkp_branch}"
 }
 
-# gs  = git stash
-alias gs="git stash"
+# gss = git stash
+alias gss="git stash"
 
 # gsa = git stash apply
 alias gsa="git stash apply"
