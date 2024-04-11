@@ -64,6 +64,13 @@ Now, whenever you press Ctrl+Alt+T, the WSL terminal will be opened."
    Windows redirects me quickly to the WSL Terminal.
 3. To paste in WSL terminal use the right click of the mouse and to copy Ctrl+Insert.
 
+## WSL Terminal Copy and Paste
+In the WSL Terminal, by default you need to paste with right click of the mouse.  
+To fix that and Copy/Paste with Ctrl+Shift+C/V you need to do this:  
+
+![image](https://github.com/lucaohost/environment/assets/31621714/887296a5-a89f-49d1-a805-8a90f095b525)
+
+
 
 
 
