@@ -46,11 +46,11 @@ xs_ubuntu() {
     systemctl suspend
 }
 
-# r   = Reboot the computer
+# rb  = Reboot the computer
 if uname -a | grep -q "Microsoft\|WSL"; then
-    alias r="wsl.exe -d ubuntu -- powershell.exe Restart-Computer"
+    alias rb="wsl.exe -d ubuntu -- powershell.exe Restart-Computer"
 elif uname -a | grep -q "Ubuntu"; then
-    alias r="reboot"
+    alias rb="reboot"
 fi
 
 # ea  = Edit Aliases
