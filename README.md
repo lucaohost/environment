@@ -38,37 +38,12 @@ https://github.com/lucaohost/environment/blob/main/vscode-keybindings.json
 * If you want to open more than one, you can use the default key binding CTRL+SHIFT+'.
 
 ## WSL Shortcut
-To open the WSL terminal on Windows using CTRL+ALT+T like Ubuntu, you need to do this:
-
-Download the file wsl.lnk and paste in your Desktop Area (it's a Window's shortcut):
-
-https://github.com/lucaohost/environment/blob/main/wsl.lnk
-
-Press CTRL+ALT+T to test it. If doesn't work, delete this file and follow these steps:
-
-1. Right-click on an empty area of your desktop and choose 'New' > 'Shortcut'.
-2. In the window that appears, type the following command:
-
-```
-wsl.exe
-```
-
-3. Click 'Next' and give a name to the shortcut, for example, 'WSL Terminal'. Click 'Finish' to create the shortcut.
-4. Now, right-click on the shortcut you created and select 'Properties'.
-5. In the 'Shortcut' tab, click on the 'Shortcut key' field and press Ctrl+Alt+T. Click 'OK' to save your changes.
-   
-Now, whenever you press Ctrl+Alt+T, the WSL terminal will be opened."
-
-### Tips
-1. It's kinda slow open the WSL terminal everytime, so I keep open the WSL terminal and when I press the shortcut,
-   Windows redirects me quickly to the WSL Terminal.
-3. To paste in WSL terminal use the right click of the mouse and to copy Ctrl+Insert.
-
-## WSL Terminal Copy and Paste
-In the WSL Terminal, by default you need to paste with right click of the mouse.  
-To fix that and Copy/Paste with Ctrl+Shift+C/V you need to do this:  
-
-![image](https://github.com/lucaohost/environment/assets/31621714/887296a5-a89f-49d1-a805-8a90f095b525)
+To open the WSL Terminal usign Ctrl+Alt+T like Ubuntu, follow the Bishwas Bhandari's tutorial:
+* https://bishwas.medium.com/use-the-ctrl-alt-t-shortcut-to-open-the-terminal-in-windows-11-bbbfeac9cb85
+* In case the article doesn't exists anymore, you access in: https://github.com/lucaohost/environment/blob/main/wsl-shortcut-tutorial.pdf
+* Dont' forget to click on "More Pages" to see the full tutorial:
+  
+  ![image](https://github.com/lucaohost/environment/assets/31621714/990dbe57-8021-4064-b800-0e4d1d910938)
 
 
 
