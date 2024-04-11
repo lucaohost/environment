@@ -40,7 +40,7 @@ https://github.com/lucaohost/environment/blob/main/vscode-keybindings.json
 ## WSL Shortcut
 To open the WSL Terminal usign Ctrl+Alt+T like Ubuntu, follow the Bishwas Bhandari's tutorial:
 * https://bishwas.medium.com/use-the-ctrl-alt-t-shortcut-to-open-the-terminal-in-windows-11-bbbfeac9cb85
-* In case the article doesn't exists anymore, you access in: https://github.com/lucaohost/environment/blob/main/wsl-shortcut-tutorial.pdf
+* In case the article doesn't exists anymore, you can access in: https://github.com/lucaohost/environment/blob/main/wsl-shortcut-tutorial.pdf
 * Dont' forget to click on "More Pages" to see the full tutorial:
   
   ![image](https://github.com/lucaohost/environment/assets/31621714/990dbe57-8021-4064-b800-0e4d1d910938)
