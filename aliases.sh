@@ -78,8 +78,11 @@ gu() {
 # cl  = Clear
 alias cl=clear
 
-# gcm = Goes to main branch
-alias gcm='git checkout main'
+# gcm = Goes to the default branch
+gcm() {
+    default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+    git checkout "$default_branch"
+}
 
 # gcd = Goes to develop branch
 alias gcd='git checkout $(git branch --list develop || echo dev)'
@@ -91,7 +94,7 @@ alias gp='git push'
 alias gbd='git branch -d'
 
 # gbD = Delete Branch forcefully, even if it contains unmerged changes
-alias gbdd='git branch -D'
+alias gbD='git branch -D'
 
 # gcb = Create a new branch
 alias gcb='git checkout -b'
@@ -135,3 +138,15 @@ bkg() {
     git stash apply
     echo "Github Backup Completed in branch: ${bkp_branch}"
 }
+
+# gs  = git stash
+alias gs="git stash"
+
+# gsa = git stash apply
+alias gsa="git stash apply"
+
+# gsl = git stash list
+alias gsl="git stash list"
+
+# gb  = git branch
+alias gb="git branch"
