@@ -57,7 +57,7 @@ fi
 alias ea="nano $LUCAO_ENV/aliases.sh"
 
 # ua  = Update Aliases
-alias ua="$LUCAO_ENV/update-aliases.sh"
+alias ua="$LUCAO_ENV/scripts/update-aliases.sh"
 
 # eb  = Edit ~/.bashrc
 alias eb="nano ~/.bashrc"
@@ -134,8 +134,8 @@ alias ~="cd ~"
 # ..  = cd ..
 alias ".."="cd .."
 
-# bkl = Backup Locally of Changed Files
-alias bkl="$LUCAO_ENV/backup-changed-files.sh"
+# bcf = Backup Locally of Changed Files
+alias bcf="$LUCAO_ENV/scripts/backup-changed-files.sh"
 
 # bkg = Backup in Github of Changed Files
 bkg() {
@@ -164,3 +164,9 @@ alias gsl="git stash list"
 
 # gb  = git branch
 alias gb="git branch"
+
+# uar = Update All Repositories
+alias uar="$LUCAO_ENV/scripts/update-all-repos.sh"
+
+# vcc = Verify Changes to Commit in All Repositories
+alias vcc="$LUCAO_ENV/scripts/verify-changes-to-commit.sh"
