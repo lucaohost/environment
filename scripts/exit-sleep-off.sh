@@ -12,7 +12,7 @@ xs_windows() {
     fi
     minutes="$1"
     seconds=$((minutes * 60))
-    wsl.exe -d ubuntu -- powershell.exe "Start-Sleep -Seconds $seconds"
+    wsl.exe -d ubuntu -- powershell.exe "Start-Sleep -Seconds $seconds; Stop-Computer"
 }
 xs_ubuntu() {
     if [[ -z "$1" ]]; then
@@ -21,5 +21,5 @@ xs_ubuntu() {
     fi
     minutes="$1"
     seconds=$((minutes * 60))
-    sudo sleep "$seconds" && systemctl suspend
+    sudo sleep "$seconds" && poweroff
 }
