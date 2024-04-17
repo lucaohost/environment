@@ -1,5 +1,6 @@
-bkg() {
+bkb() {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
+    git add -A
     git stash
     git stash apply
     datetime=$(date +"%Y-%m-%d_%H-%M-%S")

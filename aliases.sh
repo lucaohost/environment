@@ -75,11 +75,8 @@ alias ~="cd ~"
 # ..  = cd ..
 alias ".."="cd .."
 
-# bcf = Backup Locally of Changed Files
-alias bcf="$LUCAO_ENV/scripts/backup-changed-files.sh"
-
-# bkg = Backup in Github of Changed Files
-source $LUCAO_ENV/scripts/backup-github.sh
+# bkb = Backup. Push changed files in a backup branch.
+source $LUCAO_ENV/scripts/backup-github-branch.sh
 
 # gss = git stash
 alias gss="git stash"
