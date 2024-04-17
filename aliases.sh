@@ -16,7 +16,7 @@ source $LUCAO_ENV/scripts/turn-off-computer.sh
 # xs  = Exit Sleep (Suspend computer after N minutes) | Usage: xs 45
 source $LUCAO_ENV/scripts/exit-sleep.sh
 
-# xxs  = Double Exit Sleep (Turn off computer after N minutes) | Usage: xs 45
+# xxs  = Double Exit Sleep (Turn off computer after N minutes) | Usage: xxs 45
 source $LUCAO_ENV/scripts/exit-sleep-off.sh
 
 # rb  = Reboot the computer
