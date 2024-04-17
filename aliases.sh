@@ -2,7 +2,7 @@
 alias c='cd $LUCAO_ENV && cd ..'
 
 # rmb = Remember my Bashes
-alias rmb="ls -1 $LUCAO_ENV/*.sh"
+alias rmb="ls -1 $LUCAO_ENV/scripts/*.sh"
 
 # rma = Remeber my Aliases
 alias rma="grep -E '^#' $LUCAO_ENV/aliases.sh"
@@ -16,7 +16,7 @@ source $LUCAO_ENV/scripts/sleep-off.sh
 # slp = Sleep (Sleep immediatly or after N minutes) | Usage: slp or slp 45
 source $LUCAO_ENV/scripts/sleep.sh
 
-# rb  = Reboot the computer
+# rbt = Reboot the computer
 source $LUCAO_ENV/scripts/reboot-computer.sh
 
 # ea  = Edit Aliases
@@ -66,7 +66,7 @@ alias gl='git pull'
 # gst = Git Status
 alias gst='git status'
 
-# gpu = Git Push -u origin
+# gpu = git push --set-upstream origin $current_branch
 alias gpu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 
 # ~   = cd ~
