@@ -34,10 +34,10 @@ rma
 ## VS Code Key Bindings
 In VS Code CTRL+Shift+P > Open Keyboard Shortcuts (JSON) and paste the content of:
 
-https://github.com/lucaohost/environment/blob/main/vscode-keybindings.json
+https://github.com/lucaohost/environment/blob/main/vscode-keybindings.txt
 
 * These key bindings will override the defaults.
-* CTRL+Y now will open and minimize the terminal. Note that it will keep only one terminal open.
+* CTRL+1 now will open and minimize the terminal. Note that it will keep only one terminal open.
 * If you want to open more than one, you can use the default key binding CTRL+SHIFT+'.
 
 ## WSL Shortcut
