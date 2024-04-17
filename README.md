@@ -19,14 +19,17 @@ Set the aliases in the .bashrc:
 ```
 echo "source $(pwd)/aliases.sh" >> ~/.bashrc
 ```
-![image](https://github.com/lucaohost/environment/assets/31621714/b0e384df-02a1-4674-9b91-9d84c75ca4cc)
-
+![image](https://github.com/lucaohost/environment/assets/31621714/b0e384df-02a1-4674-9b91-9d84c75ca4cc)   
+or run this command to re-run the .bashrc and reflect the changes.
+```
+source ~/.bashrc
+```
 To see the available aliases, just type rma (Remember My Aliases):
 
 ```
 rma
 ```
-![image](https://github.com/lucaohost/environment/assets/31621714/c5b3344f-9485-4907-9b1d-86244e78d648)
+![image](https://github.com/lucaohost/environment/assets/31621714/c5b3344f-9485-4907-9b1d-86244e78d648)  
 
 ## VS Code Key Bindings
 In VS Code CTRL+Shift+P > Open Keyboard Shortcuts (JSON) and paste the content of:
