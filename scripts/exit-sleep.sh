@@ -5,6 +5,7 @@ xs() {
         xs_ubuntu "$@"
     fi
 }
+
 xs_windows() {
     if [[ -z "$1" ]]; then
         echo "Usage: xs_windows <minutes>"
@@ -12,8 +13,10 @@ xs_windows() {
     fi
     minutes="$1"
     seconds=$((minutes * 60))
-    wsl.exe -d ubuntu -- powershell.exe "Start-Sleep -Seconds $seconds"
+    sleep "$seconds"
+    wsl.exe -d ubuntu -- powershell.exe "Add-Type -AssemblyName System.Windows.Forms;[System.Windows.Forms.Application]::SetSuspendState([System.Windows.Forms.PowerState]::Suspend, 'False', 'False')"
 }
+
 xs_ubuntu() {
     if [[ -z "$1" ]]; then
         echo "Usage: xs_ubuntu <minutes>"

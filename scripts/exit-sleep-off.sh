@@ -1,11 +1,11 @@
-xs() {
+xxs() {
     if grep -qE "(microsoft|WSL)" /proc/version &>/dev/null && [[ "$(uname -r)" != *Microsoft* ]]; then
-        xs_windows "$@"
+        xxs_windows "$@"
     else
-        xs_ubuntu "$@"
+        xxs_ubuntu "$@"
     fi
 }
-xs_windows() {
+xxs_windows() {
     if [[ -z "$1" ]]; then
         echo "Usage: xs_windows <minutes>"
         return 1
@@ -14,7 +14,7 @@ xs_windows() {
     seconds=$((minutes * 60))
     wsl.exe -d ubuntu -- powershell.exe "Start-Sleep -Seconds $seconds; Stop-Computer"
 }
-xs_ubuntu() {
+xxs_ubuntu() {
     if [[ -z "$1" ]]; then
         echo "Usage: xs_ubuntu <minutes>"
         return 1
