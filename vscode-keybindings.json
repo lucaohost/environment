@@ -1,10 +1,14 @@
+// In VS Code CTRL + Shift  + P > Open Keyboard Shortcuts (JSON) and paste the content below
+// Place your key bindings in this file to override the defaults
 [
+    // Open terminal usign CTRL + 1
     {
-        "key": "ctrl+y",
+        "key": "ctrl+1",
         "command": "workbench.action.terminal.toggleTerminal"
     },
+    // Minimize terminal usign CTRL + 1
     {
-        "key": "ctrl+y",
+        "key": "ctrl+1",
         "command": "-workbench.action.terminal.toggleTerminal",
         "when": "terminalFocus"
     }
