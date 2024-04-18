@@ -10,7 +10,7 @@ alias rma="grep -E '^#' $LUCAO_ENV/aliases.sh"
 # x   = Exit (Close Terminal)
 alias x="exit"
 
-# xx  = Double Exit (Turn off immediatly or after N minutes) | Usage: xx or xx 45
+# off = Turn off immediatly or after N minutes| Usage: off or off 45
 source $LUCAO_ENV/scripts/sleep-off.sh
 
 # slp = Sleep (Sleep immediatly or after N minutes) | Usage: slp or slp 45
