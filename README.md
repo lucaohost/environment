@@ -49,6 +49,17 @@ To open the WSL Terminal usign Ctrl+Alt+T like Ubuntu, follow the Bishwas Bhanda
   
   ![image](https://github.com/lucaohost/environment/assets/31621714/990dbe57-8021-4064-b800-0e4d1d910938)
 
+## Windows 11 Night Light   
+Until my last researches, there no way to create a shortcut or alias, to turn on the Windows Night Light.   
+The fastest way is Windows Key + A and click in the Night Light icon.   
+
+![image](https://github.com/lucaohost/environment/assets/31621714/e2893bc1-61c1-4922-8442-1d83a9a2e6fc)   
+
+## Switch Snipping Tool to Lightshot   
+[Windows 11 Disable Snipping Tool and switch to Lightshot.pdf](https://github.com/lucaohost/environment/files/15030381/Windows.11.Disable.Snipping.Tool.and.switch.to.Lightshot.pdf)
+
+
+
 
 
 
