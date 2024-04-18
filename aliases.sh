@@ -91,4 +91,4 @@ alias gb="git branch"
 alias uar="$LUCAO_ENV/scripts/update-all-repos.sh"
 
 # vcc = Verify Changes to Commit in All Repositories
-alias vcc="$LUCAO_ENV/scripts/verify-changes-to-commit.sh"
+source $LUCAO_ENV/scripts/verify-changes-to-commit.sh
