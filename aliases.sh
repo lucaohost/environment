@@ -88,7 +88,7 @@ alias gsl="git stash list"
 alias gb="git branch"
 
 # uar = Update All Repositories
-alias uar="$LUCAO_ENV/scripts/update-all-repos.sh"
+source $LUCAO_ENV/scripts/update-all-repos.sh
 
 # vcc = Verify Changes to Commit in All Repositories
 source $LUCAO_ENV/scripts/verify-changes-to-commit.sh
