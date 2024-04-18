@@ -18,5 +18,5 @@ slp_windows() {
 }
 
 slp_ubuntu() {
-    sudo sleep "$1" && systemctl suspend
+    sleep "$1" && systemctl suspend
 }

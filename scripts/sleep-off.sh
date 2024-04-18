@@ -17,5 +17,5 @@ off_windows() {
 }
 
 off_ubuntu() {
-    sudo sleep "$1" && poweroff
+    sleep "$1" && poweroff
 }

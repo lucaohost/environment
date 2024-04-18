@@ -1,5 +1,3 @@
-#!/bin/bash
-echo "==============================================="
 verify_repo() {
     cd "$1"
      # Check if the directory is a git repository
@@ -11,11 +9,14 @@ verify_repo() {
     cd ..
 }
 
-# Change to the directory with all GitHub Projects
-cd $LUCAO_ENV && cd ..
-# Loop through all subdirectories
-for dir in */; do
+vcc() {
+    echo "==============================================="
+    # Change to the directory with all GitHub Projects
+    cd $LUCAO_ENV && cd ..
+    # Loop through all subdirectories
+    for dir in */; do
     if [ -d "$dir" ]; then
         verify_repo "$dir"
     fi
-done
+    done
+}
