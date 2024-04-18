@@ -22,9 +22,6 @@ source $LUCAO_ENV/scripts/reboot-computer.sh
 # ea  = Edit Aliases
 alias ea="nano $LUCAO_ENV/aliases.sh"
 
-# ua  = Update Aliases
-alias ua="$LUCAO_ENV/scripts/update-aliases.sh"
-
 # eb  = Edit ~/.bashrc
 alias eb="nano ~/.bashrc"
 
