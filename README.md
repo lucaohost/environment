@@ -1,5 +1,7 @@
 # Environment
-Some environment codes, files and configs to start, after format or change computer.
+Some environment codes, files and configs to start, after format or change computer.   
+- You can follow the instalation steps below or see the instalation video: https://www.youtube.com/watch?v=bvv0vEM73UA
+- Also you can see this another video, exploring the aliases: https://www.youtube.com/watch?v=bvv0vEM73UA
 
 ## Linux/WSL Aliases:
 Clone the project:
