@@ -1,5 +1,5 @@
 # c   = Codes (Go directory with all Codes of Github Projects)
-alias c='cd $LUCAO_ENV && cd ..'
+source $LUCAO_ENV/scripts/code-dir.sh
 
 # rmb = Remember my Bashes
 alias rmb="ls -1 $LUCAO_ENV/scripts/*.sh"
@@ -52,7 +52,7 @@ alias gcb='git checkout -b'
 # gco = Checkout to another branch
 alias gco='git checkout'
 
-source $LUCAO_ENV/scripts/git-auto-complete.sh
+source $LUCAO_ENV/scripts/git-branch-complete.sh
 
 # gaa = Add all changes to commit
 alias gaa='git add --all'
