@@ -1,4 +1,4 @@
-# c   = Codes (Go directory with all Codes of Github Projects)
+# c   = Codes (Directory with all Projects | Tab to autocomplete)
 source $LUCAO_ENV/scripts/code-dir.sh
 
 # rmb = Remember my Bashes
