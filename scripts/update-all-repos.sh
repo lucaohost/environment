@@ -10,6 +10,7 @@ update_repo() {
 }
 
 uar() {
+    folder_before_script=$(pwd)
     echo "==============================================="
     # Change to the directory with all GitHub Projects
     cd $LUCAO_ENV && cd ..
@@ -19,4 +20,5 @@ uar() {
             update_repo "$dir"
         fi
     done
+    cd $folder_before_script
 }
