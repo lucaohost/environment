@@ -40,6 +40,9 @@ alias gcd='git checkout $(git branch --list develop || echo dev)'
 # gp    = Push commits 
 alias gp='git push'
 
+# gpp   = Push commits 
+alias gpp='git push --force'
+
 # gbd   = Delete Branch
 alias gbd='git branch -d'
 
