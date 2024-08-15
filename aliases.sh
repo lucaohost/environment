@@ -110,3 +110,5 @@ alias jver="sudo update-alternatives --config java"
 
 # gcam  = git commit -m | Usage: gcam My commit message
 source $LUCAO_ENV/scripts/git-commit-m.sh
+
+export DONT_PROMPT_WSL_INSTALL=true
