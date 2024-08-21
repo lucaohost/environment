@@ -107,3 +107,6 @@ alias dhist="history > ~/terminal-history.txt"
 
 # jver  = Change the Java Version
 alias jver="sudo update-alternatives --config java"
+
+# gcam  = git commit -m | Usage: gcam My commit message
+source $LUCAO_ENV/scripts/git-commit-m.sh
