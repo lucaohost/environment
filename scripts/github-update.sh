@@ -6,6 +6,6 @@ gu() {
     commit_msg="${commit_msg%?}" #remove last white space
     git add -A
     git commit -m "$commit_msg"
-    git push --force
+    git push
     echo "$commit_msg"
 }
