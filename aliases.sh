@@ -115,4 +115,4 @@ source $LUCAO_ENV/scripts/git-commit-m.sh
 export DONT_PROMPT_WSL_INSTALL=true
 
 # intj  = open InteliJ
-alias intj='intellij-idea-community'
+alias intj='(intellij-idea-community > /dev/null 2>&1 &)'
