@@ -3,12 +3,12 @@
 [
     // Open terminal usign CTRL + 0
     {
-        "key": "ctrl+0",
+        "key": "ctrl+[BracketLeft]",
         "command": "workbench.action.terminal.toggleTerminal"
     },
     // Minimize terminal usign CTRL + 0
     {
-        "key": "ctrl+0",
+        "key": "ctrl+[BracketLeft]",
         "command": "-workbench.action.terminal.toggleTerminal",
         "when": "terminalFocus"
     }
