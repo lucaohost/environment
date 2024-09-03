@@ -1,9 +1,9 @@
 update_repo() {
     cd "$1"
-     # Check if the directory is a git repository
+    # Check if the directory is a git repository
     if [ -d ".git" ]; then
         echo "Updating repository in $(pwd)"
-        git pull
+        git fetch --all
         echo "==============================================="
     fi
     cd ..
