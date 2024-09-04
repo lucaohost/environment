@@ -1,0 +1,1 @@
+# Put here your private-aliases to be ignored by git
