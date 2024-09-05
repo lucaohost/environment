@@ -4,6 +4,11 @@ update_repo() {
     if [ -d ".git" ]; then
         echo "Updating repository in $(pwd)"
         git fetch --all
+        branches=$(git branch --format='%(rename:short)'
+        for branch in $branches; do
+            git checkout "$branch"
+            git pull
+        done
         echo "==============================================="
     fi
     cd ..
