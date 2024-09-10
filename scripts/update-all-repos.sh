@@ -3,12 +3,17 @@ update_repo() {
     # Check if the directory is a git repository
     if [ -d ".git" ]; then
         echo "Updating repository in $(pwd)"
+        branch_before_script=$(git branch --show-current)
+	echo "batata $branch_before_script"
         git fetch --all
         branches=$(git branch --format='%(refname:short)')
         for branch in $branches; do
             git checkout "$branch"
             git pull
+            echo "*************************"
         done
+	echo "Returning to branch before script"
+        git checkout "$branch_before_script"
         echo "==============================================="
     fi
     cd ..
