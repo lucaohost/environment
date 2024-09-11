@@ -11,7 +11,7 @@ update_repo() {
             git pull
             echo "*************************"
         done
-	echo "Returning to branch before script"
+	echo "Returning to original branch before script"
         git checkout "$branch_before_script"
         echo "==============================================="
     fi
