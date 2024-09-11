@@ -5,6 +5,7 @@ update_repo() {
         echo "Updating repository in $(pwd)"
         branch_before_script=$(git branch --show-current)
         git fetch --all
+	echo "*************************"
         branches=$(git branch --format='%(refname:short)')
         for branch in $branches; do
             git checkout "$branch"
