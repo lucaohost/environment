@@ -4,7 +4,6 @@ update_repo() {
     if [ -d ".git" ]; then
         echo "Updating repository in $(pwd)"
         branch_before_script=$(git branch --show-current)
-	echo "batata $branch_before_script"
         git fetch --all
         branches=$(git branch --format='%(refname:short)')
         for branch in $branches; do
