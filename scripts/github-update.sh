@@ -17,7 +17,7 @@ guu() {
     fi
 
     local modified_files
-    modified_files=$(git diff --name-only)
+    modified_files=$(git diff --name-only | xargs -n 1 basename) # Extract only the file name and extension
 
     local file_count=$(echo "$modified_files" | wc -l)
 
@@ -27,7 +27,7 @@ guu() {
     fi
 
     if [ "$file_count" -le 3 ]; then
-        local file_list=$(echo "$modified_files" | paste -sd ', ' -) # Joins files with ', '
+        local file_list=$(echo "$modified_files" | paste -sd ', ' -)
         commit_msg="Manage files: $file_list\n- This commit message was automatically generated"
     else
         commit_msg="Manage several files\n- Full list of files:\n$modified_files\n- This commit message was automatically generated"
