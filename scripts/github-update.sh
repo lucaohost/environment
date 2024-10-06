@@ -3,7 +3,7 @@ gu() {
     for param in "$@"; do
         commit_msg="$commit_msg$param "
     done
-    commit_msg="${commit_msg%?}"
+    commit_msg="${commit_msg%?}" # Remove last white space
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
