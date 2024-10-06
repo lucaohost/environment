@@ -3,16 +3,16 @@ gu() {
     for param in "$@"; do
         commit_msg="$commit_msg$param "
     done
-    commit_msg="${commit_msg%?}" #remove last white space
+    commit_msg="${commit_msg%?}"
     git add -A
     git commit -m "$commit_msg"
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
     echo "$commit_msg"
 }
 
-gul() {
+guu() {
     if hostname | grep -qi "work_laptop_name"; then
-        echo "gul should not be used at work, only for private side projects."
+        echo "guu should not be used at work, only for personal side projects."
         return
     fi
 
@@ -27,11 +27,11 @@ gul() {
     fi
 
     if [ "$file_count" -le 3 ]; then
-        local file_list=$(echo "$modified_files" | tr '\n' ', ' | sed 's/, $//')
+        local file_list=$(echo "$modified_files" | paste -sd ', ' -) # Joins files with ', '
         commit_msg="Manage files: $file_list\n- This commit message was automatically generated"
     else
-        commit_msg="Manage several files:\n- Full list of files:\n$modified_files\n- This commit message was automatically generated"
+        commit_msg="Manage several files\n- Full list of files:\n$modified_files\n- This commit message was automatically generated"
     fi
 
-    gu "$commit_msg"
+    gu "$(printf "%b" "$commit_msg")"
 }
