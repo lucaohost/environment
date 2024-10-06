@@ -40,6 +40,6 @@ guu() {
         done
         commit_msg="Manage several files\n- Full list of files:\n$file_list- This commit message was automatically generated"
     fi
-
+    
     gu "$(printf "%b" "$commit_msg")"
 }
