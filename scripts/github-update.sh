@@ -27,11 +27,18 @@ guu() {
     fi
 
     if [ "$file_count" -le 3 ]; then
-        local file_list=$(echo "$modified_files" | xargs -n 1 basename | paste -sd ', ' -) # Apply basename to each file
+        local file_list=""
+        for file in $modified_files; do
+            file_list="$file_list$(basename "$file"), "
+        done
+        file_list="${file_list%, }" # Remove last comma and space
         commit_msg="Manage files: $file_list\n- This commit message was automatically generated"
     else
-        local file_list=$(echo "$modified_files" | xargs -n 1 basename)
-        commit_msg="Manage several files\n- Full list of files:\n$file_list\n- This commit message was automatically generated"
+        local file_list=""
+        for file in $modified_files; do
+            file_list="$file_list$(basename "$file")\n"
+        done
+        commit_msg="Manage several files\n- Full list of files:\n$file_list- This commit message was automatically generated"
     fi
 
     gu "$(printf "%b" "$commit_msg")"
