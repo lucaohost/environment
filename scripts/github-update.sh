@@ -32,7 +32,7 @@ guu() {
             file_list="$file_list$(basename "$file"), "
         done
         file_list="${file_list%, }" # Remove last comma and space
-        commit_msg="Manage files: $file_list\n- This commit message was automatically generated"
+        commit_msg="Manage files: $file_list\n- This commit message was automatically generated using guu alias."
     else
         local file_list=""
         for file in $modified_files; do
