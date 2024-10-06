@@ -17,7 +17,7 @@ guu() {
     fi
 
     local modified_files
-    modified_files=$(git diff --name-only | xargs -n 1 basename) # Extract only the file name and extension
+    modified_files=$(git diff --name-only)
 
     local file_count=$(echo "$modified_files" | wc -l)
 
@@ -27,10 +27,11 @@ guu() {
     fi
 
     if [ "$file_count" -le 3 ]; then
-        local file_list=$(echo "$modified_files" | paste -sd ', ' -)
+        local file_list=$(echo "$modified_files" | xargs -n 1 basename | paste -sd ', ' -) # Apply basename to each file
         commit_msg="Manage files: $file_list\n- This commit message was automatically generated"
     else
-        commit_msg="Manage several files\n- Full list of files:\n$modified_files\n- This commit message was automatically generated"
+        local file_list=$(echo "$modified_files" | xargs -n 1 basename)
+        commit_msg="Manage several files\n- Full list of files:\n$file_list\n- This commit message was automatically generated"
     fi
 
     gu "$(printf "%b" "$commit_msg")"
