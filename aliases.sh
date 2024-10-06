@@ -118,5 +118,5 @@ export DONT_PROMPT_WSL_INSTALL=true
 # intj  = Open InteliJ
 alias intj='(intellij-idea-community > /dev/null 2>&1 &)'
 
-# wind  = Open Window's Downloads
-alias wind='cd /mnt/c/Users/lucas/Downloads'
+# downl = Open Downloads folder
+source $LUCAO_ENV/scripts/open-downloads.sh
