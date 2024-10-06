@@ -25,7 +25,8 @@ alias ea="nano $LUCAO_ENV/aliases.sh"
 # eb    = Edit ~/.bashrc
 alias eb="nano ~/.bashrc"
 
-# gu    = Github Update (Commit All files and Push) | Usage: gu My commit message
+# gu    = Github Update (Commit All files and Push) | Usage: gu My commit message\n-My commit description
+# guu   = Github Update Unified (Generate message, commit push) | Usage: guu | Only for private Side Projects
 source $LUCAO_ENV/scripts/github-update.sh
 
 # cl    = Clear
@@ -111,11 +112,11 @@ alias jver="sudo update-alternatives --config java"
 # gcam  = git commit -m | Usage: gcam My commit message
 source $LUCAO_ENV/scripts/git-commit-m.sh
 
-# code  = open VS Code | Usage: code .
+# code  = Open VS Code | Usage: code .
 export DONT_PROMPT_WSL_INSTALL=true
 
-# intj  = open InteliJ
+# intj  = Open InteliJ
 alias intj='(intellij-idea-community > /dev/null 2>&1 &)'
 
-# wind  = Window's Downloads
+# wind  = Open Window's Downloads
 alias wind='cd /mnt/c/Users/lucas/Downloads'
