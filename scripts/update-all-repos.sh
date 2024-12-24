@@ -5,14 +5,35 @@ update_repo() {
         echo "Updating repository in $(pwd)"
         branch_before_script=$(git branch --show-current)
         git fetch --all
-	echo "*************************"
-        branches=$(git branch --format='%(refname:short)')
-        for branch in $branches; do
-            git checkout "$branch"
+        echo "*************************"
+
+        # Always update main or master branch first
+        if git show-ref --quiet refs/heads/main; then
+            git checkout main
             git pull
+            echo "Updated main branch"
             echo "*************************"
+        elif git show-ref --quiet refs/heads/master; then
+            git checkout master
+            git pull
+            echo "Updated master branch"
+            echo "*************************"
+        fi
+
+        # Get branches created by the specified authors
+        branches=$(git for-each-ref --format='%(refname:short) %(authorname) %(authoremail)' refs/heads/ | \
+        grep -E 'lucas.reginatto@ifood.com.br|lucas.reginatto.de.lima@gmail.com' | awk '{print $1}')
+
+        for branch in $branches; do
+            # Avoid re-pulling main or master if already updated
+            if [[ "$branch" != "main" && "$branch" != "master" ]]; then
+                git checkout "$branch"
+                git pull
+                echo "*************************"
+            fi
         done
-	echo "Returning to original branch before script"
+
+        echo "Returning to original branch before script"
         git checkout "$branch_before_script"
         echo "==============================================="
     fi
