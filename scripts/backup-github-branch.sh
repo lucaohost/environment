@@ -7,7 +7,7 @@ bkb() {
     bkp_branch="backup/${datetime}"
     git checkout -b $bkp_branch
     git add -A
-    git commit -m "backup"
+    git commit -m "backup: Add automatic backup"
     git push -u origin $bkp_branch
     git checkout $current_branch
     git stash apply
