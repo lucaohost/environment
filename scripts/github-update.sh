@@ -14,7 +14,7 @@ gu() {
 update_git_work_commits() {
     local commit_msg="$1"
     commit_info=$(git log --author="lucas.reginatto@ifood.com.br" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=iso -n 1)
-    echo $commit_info >> $HOME/git/git-work-commits/git-work-commits.txt
+    echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
     # Get the infos
     IFS='|' read -r hascommit author date branch commitMsg repository <<< "$commit_info"
