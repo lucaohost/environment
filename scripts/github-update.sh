@@ -7,8 +7,27 @@ gu() {
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+    
+    update_git_work_commits "$commit_msg"
+}
+
+update_git_work_commits() {
+    local commit_msg="$1"
     commit_info=$(git log --author="lucas.reginatto@ifood.com.br" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=iso -n 1)
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits.txt
+
+    # Get the infos
+    IFS='|' read -r hascommit author date branch commitMsg repository <<< "$commit_info"
+
+    # Generate a report easier to read
+    echo "Commit: $hascommit" >> $HOME/git/git-work-commits/git-work-commits-report.txt
+    echo "Author: $author" >> $HOME/git/git-work-commits/git-work-commits-report.txt
+    echo "Date: $date" >> $HOME/git/git-work-commits/git-work-commits-report.txt
+    echo "Branch: $branch" >> $HOME/git/git-work-commits/git-work-commits-report.txt
+    echo "Commit Message: $commitMsg" >> $HOME/git/git-work-commits/git-work-commits-report.txt
+    echo "Repository: $repository" >> $HOME/git/git-work-commits/git-work-commits-report.txt
+    echo "-------------------" >> $HOME/git/git-work-commits/git-work-commits-report.txt
+
     current_dir=$(pwd)
     cd $HOME/git/git-work-commits/
     git config --global user.email "lucas.reginatto.de.lima@gmail.com"
