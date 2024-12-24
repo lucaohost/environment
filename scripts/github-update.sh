@@ -7,7 +7,8 @@ gu() {
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-    echo "$(printf "%b" "$commit_msg")"  # Exibe a mensagem formatada corretamente
+    commit_info=$(git log --author="lucas.reginatto@ifood.com.br" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=iso -n 1)
+    echo $commit_info >> $HOME/git/git-work-commits/git-work-commits.txt
 }
 
 guu() {
