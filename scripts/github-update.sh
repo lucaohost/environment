@@ -9,6 +9,14 @@ gu() {
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
     commit_info=$(git log --author="lucas.reginatto@ifood.com.br" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=iso -n 1)
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits.txt
+    current_dir=$(pwd)
+    cd $HOME/git/git-work-commits/
+    git config --global user.email "lucas.reginatto.de.lima@gmail.com"
+    git add -A
+    git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
+    git push
+    cd $current_dir
+    git config --global user.email "lucas.reginatto@ifood.com.br"
 }
 
 guu() {
