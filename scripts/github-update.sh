@@ -7,8 +7,9 @@ gu() {
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-    
-    update_git_work_commits "$commit_msg"
+    if [ $(hostname) != "LucaS" ]; then
+        update_git_work_commits "$commit_msg"
+    fi
 }
 
 update_git_work_commits() {
