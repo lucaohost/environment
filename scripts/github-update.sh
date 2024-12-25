@@ -1,13 +1,9 @@
 gu() {
-    local commit_msg=""
-    for param in "$@"; do
-        commit_msg="$commit_msg$param "
-    done
-    commit_msg="${commit_msg%?}" # Remove last white space
+    local commit_msg="$*" # Need to use $* to get all words passed without quotes
     git add -A
-    git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
+    git commit -m "$(printf "%b" "$commit_msg")"  # Interprets \n as a new line
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-    if [ $(hostname) != "LucaS" ]; then
+    if [ $(hostname) != "LucaS" ]; then # Prevents the script from running on my personal laptop
         update_git_work_commits "$commit_msg"
     fi
 }
@@ -17,7 +13,7 @@ update_git_work_commits() {
     commit_info=$(git log --author="lucas.reginatto@ifood.com.br" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=iso -n 1)
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
-    # Get the infos
+    # Extract commit info
     IFS='|' read -r hascommit author date branch commitMsg repository <<< "$commit_info"
 
     # Generate a report easier to read
@@ -33,7 +29,7 @@ update_git_work_commits() {
     cd $HOME/git/git-work-commits/
     git config --global user.email "lucas.reginatto.de.lima@gmail.com"
     git add -A
-    git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
+    git commit -m "$(printf "%b" "$commit_msg")" # Interprets \n as a new line
     git push
     cd $current_dir
     git config --global user.email "lucas.reginatto@ifood.com.br"
