@@ -27,12 +27,12 @@ update_git_work_commits() {
 
     current_dir=$(pwd)
     cd $HOME/git/git-work-commits/
-    git config --global user.email "lucas.reginatto.de.lima@gmail.com"
+    git config --global user.email $PERSONAL_EMAIL
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")" # Interprets \n as a new line
     git push
     cd $current_dir
-    git config --global user.email "lucas.reginatto@ifood.com.br"
+    git config --global user.email $PROFESSIONAL_EMAIL
 }
 
 guu() {
