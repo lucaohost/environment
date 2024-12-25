@@ -22,7 +22,7 @@ update_repo() {
 
         # Get branches created by the specified authors
         branches=$(git for-each-ref --format='%(refname:short) %(authorname) %(authoremail)' refs/heads/ | \
-        grep -E 'lucas.reginatto@ifood.com.br|lucas.reginatto.de.lima@gmail.com' | awk '{print $1}')
+        grep -E "$PROFESSIONAL_EMAIL|$PERSONAL_EMAIL" | awk '{print $1}')
 
         for branch in $branches; do
             # Avoid re-pulling main or master if already updated
