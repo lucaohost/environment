@@ -123,3 +123,6 @@ source $LUCAO_ENV/scripts/open-downloads.sh
 
 # vid   = Open Videos folder
 source $LUCAO_ENV/scripts/open-videos.sh
+
+# editv = Make my basic edit video | Usage: editv video.mp4
+source $LUCAO_ENV/scripts/edit-video.sh
