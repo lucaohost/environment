@@ -120,3 +120,6 @@ alias intj='(intellij-idea-community > /dev/null 2>&1 &)'
 
 # downl = Open Downloads folder
 source $LUCAO_ENV/scripts/open-downloads.sh
+
+# vid   = Open Videos folder
+source $LUCAO_ENV/scripts/open-videos.sh
