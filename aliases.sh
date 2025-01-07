@@ -26,7 +26,7 @@ alias ea="nano $LUCAO_ENV/aliases.sh"
 alias eb="nano ~/.bashrc"
 
 # gu    = Github Update (Commit All files and Push) | Usage: gu My commit message\n-My commit description
-# guu   = Github Update Unified (Generate message, commit push) | Usage: guu | Only for private Side Projects
+# guc   = Github Update Censored (Commit All files and Push, but censor message reflecting commit)
 source $LUCAO_ENV/scripts/github-update.sh
 
 # cl    = Clear
