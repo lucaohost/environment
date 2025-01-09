@@ -27,6 +27,7 @@ alias eb="nano ~/.bashrc"
 
 # gu    = Github Update (Commit All files and Push) | Usage: gu My commit message\n-My commit description
 # guc   = Github Update Censored (Commit All files and Push, but censor message reflecting commit)
+# rlc   = Reflect Last Commit on Personal Github | Usage: rlc My commit message
 source $LUCAO_ENV/scripts/github-update.sh
 
 # cl    = Clear
@@ -135,3 +136,6 @@ alias pers='git config --global user.email $PERSONAL_EMAIL'
 
 # email = Show current email
 alias email='git config --global user.email'
+
+# glog  = git log
+alias glog='git log'

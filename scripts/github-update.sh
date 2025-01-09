@@ -1,3 +1,11 @@
+gu() {
+    commit_and_reflect "$*" "$*"
+}
+
+guc() {
+    commit_and_reflect "$*" "feat: CENSORED_COMMIT_MESSAGE"
+}
+
 commit_and_reflect() {
     local commit_msg="$1"
     local reflect_msg="$2"
@@ -14,14 +22,6 @@ git_commit_and_push() {
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-}
-
-gu() {
-    commit_and_reflect "$*" "$*"
-}
-
-guc() {
-    commit_and_reflect "$*" "feat: CENSORED_COMMIT_MESSAGE"
 }
 
 reflect_last_commit_on_personal_github() {
@@ -44,7 +44,7 @@ reflect_last_commit_on_personal_github() {
         echo "Author: $author"
         echo "Date: $date"
         echo "Branch: $branch"
-        echo "Commit Message: $commitMsg"
+        echo "Commit Message: $commit_msg"
         echo "Repository: $repository"
         echo "-------------------"
     } >> $HOME/git/git-work-commits/git-work-commits-report.txt
