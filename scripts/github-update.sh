@@ -19,6 +19,12 @@ commit_and_reflect() {
 
 git_commit_and_push() {
     local commit_msg="$1"
+    local repo_name=$(basename "$(git rev-parse --show-toplevel)")
+    if [[ "$(hostname)" == "18049-nb" ]]; then
+        git config user.email "$PROFESSIONAL_EMAIL"
+    else
+        git config user.email "$PERSONAL_EMAIL"
+    fi
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
