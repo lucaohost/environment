@@ -32,7 +32,7 @@ reflect_last_commit_on_personal_github() {
         return 1
     fi
 
-    commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|$commit_msg|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1)
+    commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
     # Extract commit info
