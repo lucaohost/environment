@@ -17,5 +17,8 @@ gcam() {
 
     git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
 
-    git config user.email "$PROFESSIONAL_EMAIL"
+    # By default, when I'm in my professional computer, I'll set my professional email after commiting
+    if [[ "$(hostname)" == "18049-nb" ]]; then
+        git config user.email "$PROFESSIONAL_EMAIL"
+    fi
 }
