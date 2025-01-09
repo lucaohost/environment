@@ -21,7 +21,7 @@ gu() {
 }
 
 guc() {
-    commit_and_reflect "$*" "CENSORED_COMMIT_MESSAGE"
+    commit_and_reflect "$*" "feat: CENSORED_COMMIT_MESSAGE"
 }
 
 reflect_last_commit_on_personal_github() {
