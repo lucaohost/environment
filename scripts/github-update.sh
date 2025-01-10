@@ -12,9 +12,8 @@ commit_and_reflect() {
 
     git_commit_and_push "$commit_msg"
 
-    if [ $(hostname) != "LucaS" ]; then
-        reflect_last_commit_on_personal_github "$reflect_msg"
-    fi
+    reflect_last_commit_on_personal_github "$reflect_msg"
+
 }
 
 git_commit_and_push() {
@@ -39,6 +38,11 @@ git_commit_and_push() {
 reflect_last_commit_on_personal_github() {
     local commit_msg="$1"
 
+    # It doesn't reflect commits on personal computer
+    if [ $(hostname) == "LucaS" ]; then 
+        return 1
+    fi
+
     if [ -z "$PERSONAL_EMAIL" ] || [ -z "$PROFESSIONAL_EMAIL" ]; then
         echo "Error: PERSONAL_EMAIL or PROFESSIONAL_EMAIL is not set."
         return 1
@@ -47,34 +51,31 @@ reflect_last_commit_on_personal_github() {
     commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     if [ -z "$commit_info" ]; then
         echo "Error: Commit info is empty. Stopping script."
-    else
-        # Extract commit info
-        IFS='|' read -r hascommit author date branch commitMsg repo_name <<< "$commit_info"
-
-        if [[ "$repo_name" == "environment" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
-            echo "This is a personal repository. Stopping script."
-        else
-            echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
-
-            # Generate a report easier to read
-            {
-                echo "Commit: $hascommit"
-                echo "Author: $author"
-                echo "Date: $date"
-                echo "Branch: $branch"
-                echo "Commit Message: $commit_msg"
-                echo "Repository: $repo_name"
-                echo "-------------------"
-            } >> $HOME/git/git-work-commits/git-work-commits-report.txt
-
-            current_dir=$(pwd)
-            cd $HOME/git/git-work-commits/
-            git config --global user.email $PERSONAL_EMAIL
-            git add -A
-            git commit -m "$(printf "%b" "$commit_msg")"
-            git push
-            cd $current_dir
-            git config --global user.email $PROFESSIONAL_EMAIL
-        fi
+        return 1
     fi
+    # Extract commit info
+    IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+    
+    echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
+
+    # Generate a report easier to read
+    {
+        echo "Commit: $hashCommit"
+        echo "Author: $author"
+        echo "Date: $date"
+        echo "Branch: $branch"
+        echo "Commit Message: $commit_msg"
+        echo "Repository: $repo_name"
+        echo "-------------------"
+    } >> $HOME/git/git-work-commits/git-work-commits-report.txt
+
+    current_dir=$(pwd)
+    cd $HOME/git/git-work-commits/
+    git config --global user.email $PERSONAL_EMAIL
+    git add -A
+    git commit -m "$(printf "%b" "$commit_msg")"
+    git push
+    cd $current_dir
+    git config --global user.email $PROFESSIONAL_EMAIL
+
 }
