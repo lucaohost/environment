@@ -43,11 +43,6 @@ reflect_last_commit_on_personal_github() {
         return 1
     fi
 
-    # It doesn't reflect commits on personal repositories
-    if [[ "$repo_name" == "environment" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
-        return 1
-    fi
-
     if [ -z "$PERSONAL_EMAIL" ] || [ -z "$PROFESSIONAL_EMAIL" ]; then
         echo "Error: PERSONAL_EMAIL or PROFESSIONAL_EMAIL is not set."
         return 1
@@ -60,6 +55,11 @@ reflect_last_commit_on_personal_github() {
     fi
     # Extract commit info
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+
+    # It doesn't reflect commits on personal repositories
+    if [[ "$repo_name" == "environment" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
+        return 1
+    fi
     
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
