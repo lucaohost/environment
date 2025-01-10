@@ -51,7 +51,7 @@ reflect_last_commit_on_personal_github() {
     fi
 
     # Extract commit info
-    IFS='|' read -r hascommit author date branch commitMsg repository <<< "$commit_info"
+    IFS='|' read -r hascommit author date branch commitMsg repo_name <<< "$commit_info"
 
     if [[ "$repo_name" == "environment" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
         echo "This is a personal repository. Exiting script."
@@ -67,7 +67,7 @@ reflect_last_commit_on_personal_github() {
         echo "Date: $date"
         echo "Branch: $branch"
         echo "Commit Message: $commit_msg"
-        echo "Repository: $repository"
+        echo "Repository: $repo_name"
         echo "-------------------"
     } >> $HOME/git/git-work-commits/git-work-commits-report.txt
 
