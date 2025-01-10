@@ -25,7 +25,7 @@ git_commit_and_push() {
     else
         git config user.email "$PERSONAL_EMAIL"
     fi
-    if [[ "$repo_name" == "environment" || "$repo_name" == "notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
+    if [[ "$repo_name" == "environment" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
         git config user.email "$PERSONAL_EMAIL"
     fi
     git add -A
@@ -49,10 +49,16 @@ reflect_last_commit_on_personal_github() {
         echo "Error: Commit info is empty."
         exit 1
     fi
-    echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
     # Extract commit info
     IFS='|' read -r hascommit author date branch commitMsg repository <<< "$commit_info"
+
+    if [[ "$repo_name" == "environment" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
+        echo "This is a personal repository. Exiting script."
+        exit 0
+    fi
+
+    echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
     # Generate a report easier to read
     {
