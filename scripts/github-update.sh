@@ -25,9 +25,15 @@ git_commit_and_push() {
     else
         git config user.email "$PERSONAL_EMAIL"
     fi
+    if [[ "$repo_name" == "environment" || "$repo_name" == "notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
+        git config user.email "$PERSONAL_EMAIL"
+    fi
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+    if [[ "$(hostname)" == "18049-nb" ]]; then
+        git config user.email "$PROFESSIONAL_EMAIL"
+    fi
 }
 
 reflect_last_commit_on_personal_github() {
