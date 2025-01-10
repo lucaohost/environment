@@ -11,7 +11,7 @@ gcam() {
         return 1
     fi
 
-    if [[ "$repo_name" == "environment" || "$repo_name" == "my-codes" || "$repo_name" == "git-work-commits" ]]; then
+    if [[ "$repo_name" == "environment" || "$repo_name" == "notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
         git config user.email "$PERSONAL_EMAIL"
     fi
 
