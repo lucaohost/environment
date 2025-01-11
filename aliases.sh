@@ -28,6 +28,9 @@ alias eb="nano ~/.bashrc"
 # gu    = Github Update (Commit All files and Push) | Usage: gu My commit message\n-My commit description
 # guc   = Github Update Censored (Commit All files and Push, but censor message reflecting commit)
 # rlc   = Reflect Last Commit on Personal Github | Usage: rlc My commit message
+# gp    = Push commits 
+# gpp   = Push commits forcefully
+# gpu   = git push --set-upstream origin $current_branch
 source $LUCAO_ENV/scripts/github-update.sh
 
 # cl    = Clear
@@ -38,12 +41,6 @@ source $LUCAO_ENV/scripts/git-checkout-main.sh
 
 # gcd   = Goes to develop branch
 alias gcd='git checkout $(git branch --list develop || echo dev)'
-
-# gp    = Push commits 
-alias gp='git push'
-
-# gpp   = Push commits 
-alias gpp='git push --force'
 
 # gbd   = Delete Branch
 alias gbd='git branch -d'
@@ -67,9 +64,6 @@ alias gl='git pull'
 
 # gst   = Git Status
 alias gst='git status'
-
-# gpu   = git push --set-upstream origin $current_branch
-alias gpu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 
 # ~     = cd ~
 alias ~="cd ~"
