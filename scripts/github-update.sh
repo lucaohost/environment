@@ -36,7 +36,7 @@ git_commit_and_push() {
 }
 
 reflect_last_commit_on_personal_github() {
-    local commit_msg="$1"
+    local commit_msg="$*"
 
     # It doesn't reflect commits on personal computer
     if [ $(hostname) == "LucaS" ]; then 
