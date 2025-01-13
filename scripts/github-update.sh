@@ -81,11 +81,13 @@ reflect_last_commit_on_personal_github() {
     current_dir=$(pwd)
     cd $HOME/git/git-work-commits/
     git config --global user.email $PERSONAL_EMAIL
+    git config --local user.email $PERSONAL_EMAIL
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"
     git push
     cd $current_dir
     git config --global user.email $PROFESSIONAL_EMAIL
+    git config --local user.email $PROFESSIONAL_EMAIL
 
 }
 

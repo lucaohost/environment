@@ -123,10 +123,10 @@ source $LUCAO_ENV/scripts/open-videos.sh
 source $LUCAO_ENV/scripts/edit-video.sh
 
 # prof  = Set Professional Email
-alias prof='git config --global user.email $PROFESSIONAL_EMAIL'
+alias prof='git config --global user.email $PROFESSIONAL_EMAIL && git config user.email $PROFESSIONAL_EMAIL'
 
 # pers  = Set Personal Email
-alias pers='git config --global user.email $PERSONAL_EMAIL'
+alias pers='git config --global user.email $PERSONAL_EMAIL && git config user.email $PERSONAL_EMAIL'
 
 # email = Show current email
 alias email='git config --global user.email'
