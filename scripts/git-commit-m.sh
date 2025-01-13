@@ -12,13 +12,13 @@ gcam() {
     fi
 
     if [[ "$repo_name" == "environment" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" ]]; then
-        git config user.email "$PERSONAL_EMAIL"
+        git config --global user.email "$PERSONAL_EMAIL"
     fi
 
     git commit -m "$(printf "%b" "$commit_msg")"  # Interpreta o \n como nova linha
 
     # By default, when I'm in my professional computer, I'll set my professional email after commiting
     if [[ "$(hostname)" == "18049-nb" ]]; then
-        git config user.email "$PROFESSIONAL_EMAIL"
+        git config --global user.email "$PROFESSIONAL_EMAIL"
     fi
 }
