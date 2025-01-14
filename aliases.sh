@@ -129,7 +129,7 @@ alias prof='git config --global user.email $PROFESSIONAL_EMAIL && git config use
 alias pers='git config --global user.email $PERSONAL_EMAIL && git config user.email $PERSONAL_EMAIL'
 
 # email = Show current email
-alias email='git config --global user.email'
+alias email='echo "Global email: $(git config --global user.email)"; echo "Local email: $(git config user.email)"'
 
 # glog  = git log
 alias glog='git log'
