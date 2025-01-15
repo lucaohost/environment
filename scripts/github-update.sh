@@ -36,6 +36,9 @@ git_commit_and_push() {
     if [[ "$(hostname)" == "18049-nb" ]]; then
         git config --global user.email "$PROFESSIONAL_EMAIL"
         git config --local user.email "$PROFESSIONAL_EMAIL"
+    else 
+        git config --global user.email "$PERSONAL_EMAIL"
+        git config --local user.email "$PERSONAL_EMAIL"
     fi
 }
 
