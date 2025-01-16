@@ -89,9 +89,13 @@ reflect_last_commit_on_personal_github() {
     git commit -m "$(printf "%b" "$commit_msg")"
     git push
     cd $current_dir
-    git config --global user.email $PROFESSIONAL_EMAIL
-    git config --local user.email $PROFESSIONAL_EMAIL
-
+    if [[ "$(hostname)" == "18049-nb" ]]; then
+        git config --global user.email "$PROFESSIONAL_EMAIL"
+        git config --local user.email "$PROFESSIONAL_EMAIL"
+    else 
+        git config --global user.email "$PERSONAL_EMAIL"
+        git config --local user.email "$PERSONAL_EMAIL"
+    fi
 }
 
 gp () {
@@ -113,4 +117,22 @@ gpu () {
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
     reflect_last_commit_on_personal_github "$commitMsg"
+}
+
+gpnotes() {
+    before_script_directory=$(pwd)
+    cd $HOME/git/notes/private-notes
+    gu "docs: Add notes"
+    cd $HOME/git/notes/my-notes
+    gu "docs: Add notes"
+    cd $before_script_directory
+}
+
+glnotes() {
+    before_script_directory=$(pwd)
+    cd $HOME/git/notes/private-notes
+    git pull
+    cd $HOME/git/notes/my-notes
+    git pull
+    cd $before_script_directory
 }
