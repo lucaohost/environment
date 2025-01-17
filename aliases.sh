@@ -31,7 +31,11 @@ alias eb="nano ~/.bashrc"
 # gp    = Push commits 
 # gpp   = Push commits forcefully
 # gpu   = git push --set-upstream origin $current_branch
+# gln   = git pull Notes
+# gpn   = git push Notes
 source $LUCAO_ENV/scripts/github-update.sh
+# notes = Open notes directory
+alias notes="c notes; code ."
 
 # cl    = Clear
 alias cl=clear

@@ -119,7 +119,7 @@ gpu () {
     reflect_last_commit_on_personal_github "$commitMsg"
 }
 
-gpnotes() {
+gpn() {
     before_script_directory=$(pwd)
     cd $HOME/git/notes/private-notes
     gu "docs: Add notes"
@@ -128,7 +128,7 @@ gpnotes() {
     cd $before_script_directory
 }
 
-glnotes() {
+gln() {
     before_script_directory=$(pwd)
     cd $HOME/git/notes/private-notes
     git pull
