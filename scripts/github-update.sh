@@ -120,11 +120,15 @@ gpu () {
 }
 
 gpn() {
+    local commit_msg="$*"
+    if [ -z "$commit_msg" ]; then
+        commit_msg="docs: Add notes"
+    fi
     before_script_directory=$(pwd)
     cd $HOME/git/notes/private-notes
-    gu "docs: Add notes"
+    gu "$commit_msg"
     cd $HOME/git/notes/my-notes
-    gu "docs: Add notes"
+    gu "$commit_msg"
     cd $before_script_directory
 }
 
