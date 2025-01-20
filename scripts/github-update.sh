@@ -124,7 +124,7 @@ gpn() {
     if [ -z "$commit_msg" ]; then
         commit_msg="docs: Add notes"
     fi
-    before_script_directory=$(pwd)
+    local before_script_directory=$(pwd)
     cd $HOME/git/notes/private-notes
     gu "$commit_msg"
     cd $HOME/git/notes/my-notes
@@ -133,10 +133,19 @@ gpn() {
 }
 
 gln() {
-    before_script_directory=$(pwd)
+    local before_script_directory=$(pwd)
     cd $HOME/git/notes/private-notes
     git pull
     cd $HOME/git/notes/my-notes
     git pull
+    cd $before_script_directory
+}
+
+gsn() {
+    local before_script_directory=$(pwd)
+    cd $HOME/git/notes/my-notes
+    git status
+    cd $HOME/git/notes/private-notes
+    git status
     cd $before_script_directory
 }
