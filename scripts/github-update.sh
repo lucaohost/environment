@@ -26,7 +26,7 @@ git_commit_and_push() {
         git config --global user.email "$PERSONAL_EMAIL"
         git config --local user.email "$PERSONAL_EMAIL"
     fi
-    if [[ "$repo_name" == "environment" || "$repo_name" == "random-codes" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" || "$repo_name" == "private-codes" ]]; then
+    if [[ "$repo_name" == "environment" || "$repo_name" == "random-codes" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" || "$repo_name" == "private-codes" || "$repo_name" == "leet-code" ]]; then
         git config --global user.email "$PERSONAL_EMAIL"
         git config --local user.email "$PERSONAL_EMAIL"
     fi
@@ -64,7 +64,7 @@ reflect_last_commit_on_personal_github() {
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
 
     # It doesn't reflect commits on personal repositories
-    if [[ "$repo_name" == "environment" || "$repo_name" == "random-codes" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" || "$repo_name" == "private-codes" ]]; then
+    if [[ "$repo_name" == "environment" || "$repo_name" == "random-codes" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" || "$repo_name" == "private-codes" || "$repo_name" == "leet-code" ]]; then
         return 1
     fi
     
