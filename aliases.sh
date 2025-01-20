@@ -103,8 +103,8 @@ source $LUCAO_ENV/scripts/open-dir.sh
 # hist  = Print the terminal's history
 alias hist="history"
 
-# dhist = Dump terminal's history in ~/terminal-history.txt
-alias dhist="history > ~/terminal-history.txt"
+# dhist = Dump terminal's history in ~/git/notes/private-notes/terminal-history.txt
+alias dhist="history > ~/git/notes/private-notes/terminal-history.txt"
 
 # jver  = Change the Java Version
 alias jver="sudo update-alternatives --config java"
