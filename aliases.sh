@@ -138,3 +138,5 @@ alias email='echo "Global email: $(git config --global user.email)"; echo "Local
 
 # glog  = git log
 alias glog='git log'
+
+source ~/git/notes/private-notes/private-aliases.sh

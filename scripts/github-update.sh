@@ -119,19 +119,6 @@ gpu () {
     reflect_last_commit_on_personal_github "$commitMsg"
 }
 
-gpn() {
-    local commit_msg="$*"
-    if [ -z "$commit_msg" ]; then
-        commit_msg="docs: Add notes"
-    fi
-    local before_script_directory=$(pwd)
-    cd $HOME/git/notes/private-notes
-    gu "$commit_msg"
-    cd $HOME/git/notes/my-notes
-    gu "$commit_msg"
-    cd $before_script_directory
-}
-
 gln() {
     local before_script_directory=$(pwd)
     cd $HOME/git/notes/private-notes
