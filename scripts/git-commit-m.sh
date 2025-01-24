@@ -10,8 +10,8 @@ gcam() {
         echo "Warning: PERSONAL_EMAIL and/or PROFESSIONAL_EMAIL environment variables are not set."
         return 1
     fi
-
-    if [[ "$repo_name" == "environment" || "$repo_name" == "random-codes" || "$repo_name" == "my-notes" || "$repo_name" == "private-notes" || "$repo_name" == "git-work-commits" || "$repo_name" == "private-codes" || "$repo_name" == "leet-code" ]]; then
+    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    if [ "$repo_owner" == "lucaohost" ]; then
         git config --global user.email "$PERSONAL_EMAIL"
         git config --local user.email "$PERSONAL_EMAIL"
     fi
