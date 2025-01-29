@@ -19,13 +19,7 @@ commit_and_reflect() {
 git_commit_and_push() {
     local commit_msg="$1"
     local repo_name=$(basename "$(git rev-parse --show-toplevel)")
-    if [[ "$(hostname)" == "18049-nb" ]]; then
-        git config --global user.email "$PROFESSIONAL_EMAIL"
-        git config --local user.email "$PROFESSIONAL_EMAIL"
-    else
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
-    fi
+    set_git_email_based_on_hostname
     local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
     if [ "$repo_owner" == "lucaohost" ]; then
         git config --global user.email "$PERSONAL_EMAIL"
@@ -34,17 +28,12 @@ git_commit_and_push() {
     git add -A
     git commit -m "$(printf "%b" "$commit_msg")"
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-    if [[ "$(hostname)" == "18049-nb" ]]; then
-        git config --global user.email "$PROFESSIONAL_EMAIL"
-        git config --local user.email "$PROFESSIONAL_EMAIL"
-    else 
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
-    fi
+    set_git_email_based_on_hostname
 }
 
 reflect_last_commit_on_personal_github() {
     local commit_msg="$*"
+    set_git_email_based_on_hostname
 
     # It doesn't reflect commits on personal computer
     if [ $(hostname) == "LucaS" ]; then 
@@ -91,13 +80,7 @@ reflect_last_commit_on_personal_github() {
     git commit -m "$(printf "%b" "$commit_msg")"
     git push
     cd $current_dir
-    if [[ "$(hostname)" == "18049-nb" ]]; then
-        git config --global user.email "$PROFESSIONAL_EMAIL"
-        git config --local user.email "$PROFESSIONAL_EMAIL"
-    else 
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
-    fi
+    set_git_email_based_on_hostname
 }
 
 gp () {
@@ -159,4 +142,14 @@ notes() {
     c notes
     code .
     cd $before_script_directory
+}
+
+set_git_email_based_on_hostname() {
+    if [[ "$(hostname)" == "18049-nb" ]]; then
+        git config --global user.email "$PROFESSIONAL_EMAIL"
+        git config --local user.email "$PROFESSIONAL_EMAIL"
+    else 
+        git config --global user.email "$PERSONAL_EMAIL"
+        git config --local user.email "$PERSONAL_EMAIL"
+    fi
 }
