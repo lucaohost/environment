@@ -55,6 +55,12 @@ reflect_last_commit_on_personal_github() {
         echo "Error: PERSONAL_EMAIL or PROFESSIONAL_EMAIL is not set."
         return 1
     fi
+    
+    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    if [ "$repo_owner" == "lucaohost" ]; then
+        echo "Warning: Stopping script, it doesn't reflect on personal repositories."
+        return 1
+    fi
 
     commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     if [ -z "$commit_info" ]; then
@@ -63,12 +69,6 @@ reflect_last_commit_on_personal_github() {
     fi
     # Extract commit info
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
-
-    # It doesn't reflect commits on personal repositories
-    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
-    if [ "$repo_owner" == "lucaohost" ]; then
-        return 1
-    fi
     
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
@@ -103,6 +103,11 @@ reflect_last_commit_on_personal_github() {
 gp () {
     commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    if [ "$repo_owner" == "lucaohost" ]; then
+        git config --global user.email "$PERSONAL_EMAIL"
+        git config --local user.email "$PERSONAL_EMAIL"
+    fi
     git push
     reflect_last_commit_on_personal_github "$commitMsg"
 }
@@ -110,6 +115,11 @@ gp () {
 gpp () {
     commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    if [ "$repo_owner" == "lucaohost" ]; then
+        git config --global user.email "$PERSONAL_EMAIL"
+        git config --local user.email "$PERSONAL_EMAIL"
+    fi
     git push --force
     reflect_last_commit_on_personal_github "$commitMsg"
 }
@@ -117,6 +127,11 @@ gpp () {
 gpu () {
     commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    if [ "$repo_owner" == "lucaohost" ]; then
+        git config --global user.email "$PERSONAL_EMAIL"
+        git config --local user.email "$PERSONAL_EMAIL"
+    fi
     git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
     reflect_last_commit_on_personal_github "$commitMsg"
 }
