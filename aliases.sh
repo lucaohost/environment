@@ -35,8 +35,7 @@ alias eb="nano ~/.bashrc"
 # gpn   = git push Notes (folders my-notes and private-notes)
 # gsn   = git status Notes (folders my-notes and private-notes)
 source $LUCAO_ENV/scripts/github-update.sh
-# notes = Open notes directory
-alias notes="c notes; code ."
+# notes = Open Notes Project on VSCode
 
 # cl    = Clear
 alias cl=clear

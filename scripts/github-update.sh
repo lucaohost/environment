@@ -138,3 +138,10 @@ gsn() {
     git status
     cd $before_script_directory
 }
+
+notes() {
+    local before_script_directory=$(pwd)
+    c notes
+    code .
+    cd $before_script_directory
+}
