@@ -138,4 +138,10 @@ alias email='echo "Global email: $(git config --global user.email)"; echo "Local
 # glog  = git log
 alias glog='git log'
 
+# tab = Open new Terminal Tab
+alias tab='gnome-terminal --tab'
+
+# tab = Open new Terminal Tab and Close the current one
+alias tabc='gnome-terminal --tab; exit'
+
 source ~/git/notes/private-notes/private-aliases.sh
