@@ -13,7 +13,7 @@ vcc() {
     folder_before_script=$(pwd)
     echo "==============================================="
     # Change to the directory with all GitHub Projects
-    cd $LUCAO_ENV && cd ..
+    cd $HOME/git
     # Loop through all subdirectories
     for dir in */; do
     if [ -d "$dir" ]; then

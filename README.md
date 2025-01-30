@@ -6,22 +6,14 @@ Some environment codes, files and configs to start, after format or change compu
   - https://www.youtube.com/watch?v=5Vl0v1jmbgQ
 
 ## Linux/WSL Aliases:
-Clone the project:
+Clone the project in $HOME/git:
 
-```
+```bash
 git clone git@github.com:lucaohost/environment.git
-```
-Go to projects directory:
-```
-cd environment
-```
-Set the environemnt variable containing the project's path:
-```
-echo export "LUCAO_ENV='$(pwd)'" >> ~/.bashrc
 ```
 Set the aliases in the .bashrc:
 ```
-echo "source $(pwd)/aliases.sh" >> ~/.bashrc
+echo "source $HOME/git/environment/aliases.sh" >> ~/.bashrc
 ```
 ![image](https://github.com/lucaohost/environment/assets/31621714/b0e384df-02a1-4674-9b91-9d84c75ca4cc)   
 or run this command to re-run the .bashrc and reflect the changes.
@@ -37,7 +29,7 @@ rma
 
 
 ## VS Code Key Bindings
-In VS Code CTRL+Shift+P > Open Keyboard Shortcuts (JSON) and paste the content of:
+In VS Code CTRL + Shift + P > Open Keyboard Shortcuts (JSON) and paste the content of:
 
 https://github.com/lucaohost/environment/blob/main/vscode-keybindings.txt
 
