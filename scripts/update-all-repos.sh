@@ -51,5 +51,8 @@ uar() {
             update_repo "$dir"
         fi
     done
+    update_repo "notes/my-notes"
+    cd ..
+    update_repo "notes/private-code-notes"
     cd $folder_before_script
 }
