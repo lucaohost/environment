@@ -121,7 +121,7 @@ gpu () {
 
 gln() {
     local before_script_directory=$(pwd)
-    cd $HOME/git/notes/private-notes
+    cd $HOME/git/notes/private-code-notes
     git pull
     cd $HOME/git/notes/my-notes
     git pull
@@ -132,7 +132,7 @@ gsn() {
     local before_script_directory=$(pwd)
     cd $HOME/git/notes/my-notes
     git status
-    cd $HOME/git/notes/private-notes
+    cd $HOME/git/notes/private-code-notes
     git status
     cd $before_script_directory
 }

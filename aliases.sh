@@ -31,9 +31,9 @@ alias eb="nano ~/.bashrc"
 # gp    = Push commits 
 # gpp   = Push commits forcefully
 # gpu   = git push --set-upstream origin $current_branch
-# gln   = git pull Notes (folders my-notes and private-notes)
-# gpn   = git push Notes (folders my-notes and private-notes)
-# gsn   = git status Notes (folders my-notes and private-notes)
+# gln   = git pull Notes (folders my-notes and private-code-notes)
+# gpn   = git push Notes (folders my-notes and private-code-notes)
+# gsn   = git status Notes (folders my-notes and private-code-notes)
 # notes = Open Notes Project on VSCode
 source $HOME/git/environment/scripts/github-update.sh
 
@@ -102,8 +102,8 @@ source $HOME/git/environment/scripts/open-dir.sh
 # hist  = Print the terminal's history
 alias hist="history"
 
-# dhist = Dump terminal's history in ~/git/notes/private-notes/terminal-history.txt
-alias dhist="history > ~/git/notes/private-notes/terminal-history.txt"
+# dhist = Dump terminal's history in ~/git/notes/private-code-notes/terminal-history.txt
+alias dhist="history > ~/git/notes/private-code-notes/terminal-history.txt"
 
 # jver  = Change the Java Version
 alias jver="sudo update-alternatives --config java"
@@ -144,4 +144,4 @@ alias tab='gnome-terminal --tab'
 # tab = Open new Terminal Tab and Close the current one
 alias tabc='gnome-terminal --tab; exit'
 
-source ~/git/notes/private-notes/private-aliases.sh
+source ~/git/notes/private-code-notes/private-aliases.sh
