@@ -144,4 +144,8 @@ alias tab='gnome-terminal --tab'
 # tab = Open new Terminal Tab and Close the current one
 alias tabc='gnome-terminal --tab; exit'
 
+# leet = Create folder/file to store a LeetCode problem
+# Usage: leet my-example
+source $HOME/git/environment/scripts/leet.sh
+
 source ~/git/notes/private-code-notes/private-aliases.sh
