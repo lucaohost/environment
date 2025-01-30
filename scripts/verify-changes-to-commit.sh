@@ -20,5 +20,8 @@ vcc() {
         verify_repo "$dir"
     fi
     done
+    verify_repo "notes/my-notes"
+    cd ..
+    verify_repo "notes/private-code-notes"
     cd $folder_before_script
 }
