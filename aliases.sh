@@ -19,11 +19,11 @@ source $HOME/git/environment/scripts/sleep.sh
 # rbt   = Reboot the computer
 source $HOME/git/environment/scripts/reboot-computer.sh
 
-# ea    = Edit Aliases
-alias ea="nano $HOME/git/environment/aliases.sh"
+# eal   = Edit Aliases
+alias eal="nano $HOME/git/environment/aliases.sh"
 
-# eb    = Edit ~/.bashrc
-alias eb="nano ~/.bashrc"
+# eba   = Edit ~/.bashrc
+alias eba="nano ~/.bashrc"
 
 # gu    = Github Update (Commit All files and Push) | Usage: gu My commit message\n-My commit description
 # guc   = Github Update Censored (Commit All files and Push, but censor message reflecting commit)
