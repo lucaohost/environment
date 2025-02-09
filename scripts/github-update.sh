@@ -55,8 +55,9 @@ reflect_last_commit_on_personal_github() {
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
 
     local college_repo="PCVS"
-    if [ "$repo_name" == "$college_repo"]; then
+    if [ "$repo_name" == "$college_repo" ]; then
         commit_info="$hashCommit|$COLLEGE_EMAIL|$date|$branch|$commit_msg|$repo_name"
+        author=$COLLEGE_EMAIL
     fi
     
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
