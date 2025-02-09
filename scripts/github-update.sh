@@ -35,11 +35,6 @@ reflect_last_commit_on_personal_github() {
     local commit_msg="$*"
     set_git_email_based_on_hostname
 
-    # It doesn't reflect commits on personal computer
-    if [ $(hostname) == "LucaS" ]; then 
-        return 1
-    fi
-
     if [ -z "$PERSONAL_EMAIL" ] || [ -z "$PROFESSIONAL_EMAIL" ]; then
         echo "Error: PERSONAL_EMAIL or PROFESSIONAL_EMAIL is not set."
         return 1
@@ -58,6 +53,11 @@ reflect_last_commit_on_personal_github() {
     fi
     # Extract commit info
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+
+    local college_repo="PCVS"
+    if [ "$repo_name" == "$college_repo"]; then
+        commit_info="$hashCommit|$COLLEGE_EMAIL|$date|$branch|$commit_msg|$repo_name"
+    fi
     
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
