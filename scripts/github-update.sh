@@ -41,7 +41,7 @@ reflect_last_commit_on_personal_github() {
     fi
     
     local github_username=$(git remote get-url origin | sed -E 's#.*github.com[:/](.*)/.*#\1#')
-    if [ "$repo_owner" == "lucaohost" ]; then
+    if [ "$github_username" == "lucaohost" ]; then
         echo "Warning: Stopping script, it doesn't reflect on personal repositories."
         return 1
     fi
