@@ -56,6 +56,10 @@ reflect_last_commit_on_personal_github() {
 
     local college_repo="PCVS"
     if [ "$repo_name" == "$college_repo" ]; then
+        if [ -z "$COLLEGE_EMAIL" ]; then
+            echo "Warning: COLLEGE_EMAIL is not set. Stopping script."
+            return 1
+        fi
         commit_info="$hashCommit|$COLLEGE_EMAIL|$date|$branch|$commit_msg|$repo_name"
         author=$COLLEGE_EMAIL
     fi
