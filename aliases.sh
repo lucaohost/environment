@@ -138,11 +138,11 @@ alias email='echo "Global email: $(git config --global user.email)"; echo "Local
 # glog  = git log
 alias glog='git log'
 
-# tab = Open new Terminal Tab
+# tab   = Open new Terminal Tab
 alias tab='gnome-terminal --tab'
 
-# tab = Open new Terminal Tab and Close the current one
-alias tabc='gnome-terminal --tab; exit'
+# tabx  = Open new Terminal Tab and Close the current one
+alias tabx='gnome-terminal --tab; exit'
 
 # leet = Create folder/file to store a LeetCode problem | Usage: leet my-example
 source $HOME/git/environment/scripts/leet.sh
