@@ -62,8 +62,11 @@ reflect_last_commit_on_personal_github() {
         fi
         commit_info="$hashCommit|$COLLEGE_EMAIL|$date|$branch|$commit_msg|$repo_name"
         author=$COLLEGE_EMAIL
+    else
+        # Replace commitMsg with commit_msg in case of censored message
+        commit_info="$hashCommit|$author|$date|$branch|$commit_msg|$repo_name"
     fi
-    
+
     echo $commit_info >> $HOME/git/git-work-commits/git-work-commits-data.txt
 
     # Generate a report easier to read
