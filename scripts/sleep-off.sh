@@ -5,7 +5,7 @@ off() {
         minutes=$1
     fi
     seconds=$((minutes * 60))
-    if grep -qE "(microsoft|WSL)" /proc/version &>/dev/null && [[ "$(uname -r)" != *Microsoft* ]]; then
+    if [[ "$OPERATIONAL_SYSTEM" == "WSL" ]]; then
         off_windows "$seconds"
     else
         off_ubuntu "$seconds"

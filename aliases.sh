@@ -1,3 +1,5 @@
+source $HOME/git/environment/scripts/variables.sh
+
 # c     = Codes (Directory with all Projects | Tab to autocomplete)
 source $HOME/git/environment/scripts/code-dir.sh
 
@@ -139,10 +141,8 @@ alias email='echo "Global email: $(git config --global user.email)"; echo "Local
 alias glog='git log'
 
 # tab   = Open new Terminal Tab
-alias tab='gnome-terminal --tab'
-
 # tabx  = Open new Terminal Tab and Close the current one
-alias tabx='gnome-terminal --tab; exit'
+source $HOME/git/environment/scripts/tab.sh
 
 # leet = Create folder/file to store a LeetCode problem | Usage: leet my-example
 source $HOME/git/environment/scripts/leet.sh

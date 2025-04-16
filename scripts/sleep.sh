@@ -5,7 +5,7 @@ slp() {
         minutes=$1
     fi
     seconds=$((minutes * 60))
-    if grep -qE "(microsoft|WSL)" /proc/version &>/dev/null && [[ "$(uname -r)" != *Microsoft* ]]; then
+    if [[ "$OPERATIONAL_SYSTEM" == "WSL" ]]; then
         slp_windows "$seconds"
     else
         slp_ubuntu "$seconds"
