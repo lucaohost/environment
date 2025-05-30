@@ -12,6 +12,20 @@ off() {
     fi
 }
 
+sextou() {
+    off
+}
+
+pai_ta_offi() {
+    off
+}
+
+out() {
+    off
+}
+
+
+
 off_windows() {
     wsl.exe -d ubuntu -- powershell.exe "Start-Sleep -Seconds $1; Stop-Computer"
 }
