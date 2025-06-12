@@ -5,6 +5,9 @@ update_repo() {
         echo "Updating repository in $(pwd)"
         branch_before_script=$(git branch --show-current)
         git fetch --all
+        git fetch --prune
+        # Remove local branches without remote reference
+        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
         echo "*************************"
 
         # Always update main or master branch first
