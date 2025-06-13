@@ -45,6 +45,7 @@ update_repo() {
 
 uar() {
     folder_before_script=$(pwd)
+    echo "Starting UAR script: $(date +"%Y-%m-%d %H:%M:%S")"
     echo "==============================================="
     # Change to the directory with all GitHub Projects
     cd $HOME/git
@@ -58,4 +59,5 @@ uar() {
     cd ..
     update_repo "notes/private-code-notes"
     cd $folder_before_script
+    echo "UAR script ended: $(date +"%Y-%m-%d %H:%M:%S")"
 }
