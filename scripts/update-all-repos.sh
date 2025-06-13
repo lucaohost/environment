@@ -6,8 +6,6 @@ update_repo() {
         branch_before_script=$(git branch --show-current)
         git fetch --all
         git fetch --prune
-        # Remove local branches without remote reference
-        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
         echo "*************************"
 
         # Always update main or master branch first
@@ -22,6 +20,9 @@ update_repo() {
             echo "Updated master branch"
             echo "*************************"
         fi
+
+        # Remove local branches without remote reference
+        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
 
         # Get branches created by the specified authors
         branches=$(git for-each-ref --format='%(refname:short) %(authorname) %(authoremail)' refs/heads/ | \
