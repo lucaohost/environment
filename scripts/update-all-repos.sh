@@ -7,7 +7,7 @@ update_repo() {
         git fetch --all
         git fetch --prune
         # Remove local branches without remote reference
-        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
+        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
         echo "*************************"
 
         # Always update main or master branch first
