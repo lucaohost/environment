@@ -45,19 +45,29 @@ update_repo() {
 
 uar() {
     folder_before_script=$(pwd)
+    start_time=$(date +%s)
     echo "Starting UAR script: $(date +"%Y-%m-%d %H:%M:%S")"
     echo "==============================================="
-    # Change to the directory with all GitHub Projects
-    cd $HOME/git
-    # Loop through all subdirectories
+    
+    cd "$HOME/git" || exit 1
+    
     for dir in */; do
         if [ -d "$dir" ]; then
             update_repo "$dir"
         fi
     done
+    
     update_repo "notes/my-notes"
     cd ..
     update_repo "notes/private-code-notes"
-    cd $folder_before_script
-    echo "UAR script ended: $(date +"%Y-%m-%d %H:%M:%S")"
+    cd "$folder_before_script" || exit 1
+    
+    end_time=$(date +%s)
+    elapsed=$(( end_time - start_time ))
+    minutes=$(( elapsed / 60 ))
+    seconds=$(( elapsed % 60 ))
+    
+    echo "==============================================="
+    echo "UAR script finished at: $(date +"%Y-%m-%d %H:%M:%S")"
+    echo "Elapsed time: ${minutes}m ${seconds}s"
 }
