@@ -1,14 +1,23 @@
+#!/bin/bash
+
 repos_updated=0
 branches_updated=0
 repos_with_multiple=()
 
+# Colors
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+YELLOW="\033[1;33m"
+CYAN="\033[0;36m"
+BOLD="\033[1m"
+RESET="\033[0m"
+
 update_repo() {
     cd "$1" || return
     if [ -d ".git" ]; then
-        echo "Updating repository in $(pwd)"
+        echo -e "\n${CYAN}🔄 Repository: ${BOLD}$(basename "$(pwd)")${RESET}"
         branch_before_script=$(git branch --show-current)
         git fetch --all --prune
-        echo "*************************"
 
         repo_branches_updated=0
         updated_branches=()
@@ -17,34 +26,32 @@ update_repo() {
         for main_branch in main master; do
             if git show-ref --quiet refs/heads/$main_branch; then
                 git checkout "$main_branch" >/dev/null 2>&1
-                if git pull; then
-                    echo "Updated $main_branch branch"
+                if git pull --ff-only; then
+                    echo -e "   ✅ Updated ${GREEN}$main_branch${RESET}"
                     branches_updated=$((branches_updated + 1))
                     repo_branches_updated=$((repo_branches_updated + 1))
                     updated_branches+=("$main_branch")
                 fi
-                echo "*************************"
                 break
             fi
         done
 
         # Remove local branches without remote reference
-        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D >/dev/null 2>&1
 
-        # Get branches by author
+        # Get personal/professional branches
         branches=$(git for-each-ref --format='%(refname:short) %(authorname) %(authoremail)' refs/heads/ | \
             grep -E "$PROFESSIONAL_EMAIL|$PERSONAL_EMAIL" | awk '{print $1}')
 
         for branch in $branches; do
             if [[ "$branch" != "main" && "$branch" != "master" ]]; then
                 git checkout "$branch" >/dev/null 2>&1
-                if git pull; then
-                    echo "Updated branch: $branch"
+                if git pull --ff-only; then
+                    echo -e "   ✅ Updated ${GREEN}$branch${RESET}"
                     branches_updated=$((branches_updated + 1))
                     repo_branches_updated=$((repo_branches_updated + 1))
                     updated_branches+=("$branch")
                 fi
-                echo "*************************"
             fi
         done
 
@@ -52,13 +59,11 @@ update_repo() {
             repos_updated=$((repos_updated + 1))
         fi
 
-        # Save repo if multiple branches were updated
         if [ "$repo_branches_updated" -gt 1 ]; then
             repos_with_multiple+=("$(pwd):${updated_branches[*]}")
         fi
 
         git checkout "$branch_before_script" >/dev/null 2>&1
-        echo "==============================================="
     fi
     cd ..
 }
@@ -66,15 +71,12 @@ update_repo() {
 uar() {
     folder_before_script=$(pwd)
     start_time=$(date +%s)
-    echo "Starting UAR script: $(date +"%Y-%m-%d %H:%M:%S")"
-    echo "==============================================="
-    
+    echo -e "${BOLD}🚀 Starting UAR script at $(date +"%Y-%m-%d %H:%M:%S")${RESET}"
+
     cd "$HOME/git" || exit 1
     
     for dir in */; do
-        if [ -d "$dir" ]; then
-            update_repo "$dir"
-        fi
+        [ -d "$dir" ] && update_repo "$dir"
     done
     
     update_repo "notes/my-notes"
@@ -87,22 +89,23 @@ uar() {
     minutes=$(( elapsed / 60 ))
     seconds=$(( elapsed % 60 ))
 
-    echo "UAR script finished at: $(date +"%Y-%m-%d %H:%M:%S")"
-    echo "Elapsed time: ${minutes}m ${seconds}s"
-    echo "Repositories updated: $repos_updated"
-    echo "Branches updated: $branches_updated"
+    echo -e "\n${BOLD}📊 Summary:${RESET}"
+    echo -e "   ⏱  Elapsed time: ${minutes}m ${seconds}s"
+    echo -e "   📂 Repositories updated: ${GREEN}$repos_updated${RESET}"
+    echo -e "   🌿 Branches updated: ${GREEN}$branches_updated${RESET}"
 
     if [ ${#repos_with_multiple[@]} -gt 0 ]; then
-        echo ""
-        echo "⚠️  Repositories with multiple personal branches:"
+        echo -e "\n${YELLOW}⚠️  Repositories with multiple updated branches:${RESET}"
         for entry in "${repos_with_multiple[@]}"; do
             repo_path="${entry%%:*}"
             branches="${entry#*:}"
-            echo " - $repo_path"
+            echo " - $(basename "$repo_path")"
             for b in $branches; do
                 echo "    • $b"
             done
         done
-        echo "⚠️  Verify if there is old branches to delete."
+        echo -e "${YELLOW}⚠️  Consider cleaning up old branches.${RESET}"
     fi
+
+    echo -e "\n${BOLD}✅ UAR script finished at $(date +"%Y-%m-%d %H:%M:%S")${RESET}"
 }
