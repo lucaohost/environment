@@ -97,6 +97,8 @@ update_repo() {
 }
 
 uar() {
+    # Hide cursor
+    tput civis
     folder_before_script=$(pwd)
     start_time=$(date +%s)
     echo -e "${BOLD}🚀 Updating all Repositories:${RESET}"
@@ -155,4 +157,6 @@ uar() {
     fi
 
     echo -e "\n${BOLD}✅ All Repositories Updated!${RESET}"
+    # Show cursor again
+    tput cnorm
 }
