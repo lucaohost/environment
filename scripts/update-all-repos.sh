@@ -17,13 +17,16 @@ progress_bar() {
     local current=$1
     local total=$2
     local repo="$3"
-    local width=40
+    local width=20
 
     # Avoid newlines in repo name
     repo=${repo//$'\n'/ }
     # Compute percentages/filled
     local percent=$(( current * 100 / total ))
     local filled=$(( width * current / total ))
+    if [ $filled -eq 0 ]; then
+        filled=1
+    fi
     local empty=$(( width - filled ))
 
     # Build bar
