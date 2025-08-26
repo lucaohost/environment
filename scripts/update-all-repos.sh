@@ -112,10 +112,10 @@ uar() {
     for dir in "${repos[@]}"; do
         if [ -d "$dir" ]; then
             repo_name=$(basename "$dir")
+            current_repo=$((current_repo + 1))
+            progress_bar "$current_repo" "$total_repos" "$repo_name"
             update_repo "$dir"
         fi
-        current_repo=$((current_repo + 1))
-        progress_bar "$current_repo" "$total_repos" "$repo_name"
     done
 
     cd "$folder_before_script" || exit 1
