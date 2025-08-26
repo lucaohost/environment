@@ -16,20 +16,23 @@ RESET="\033[0m"
 progress_bar() {
     local current=$1
     local total=$2
+    local repo="$3"
     local width=40
+
+    # Avoid newlines in repo name
+    repo=${repo//$'\n'/ }
+    # Compute percentages/filled
     local percent=$(( current * 100 / total ))
     local filled=$(( width * current / total ))
     local empty=$(( width - filled ))
 
-    # Build bar string
-    local bar="["
+    # Build bar
+    local bar=""
     for ((i=0; i<filled; i++)); do bar+="█"; done
     for ((i=0; i<empty; i++)); do bar+=" "; done
-    bar+="]"
 
-    # Print on same line
-    printf "\r%s %3d%% (%d/%d) - %s" \
-        "$bar" "$percent" "$current" "$total" "$3"
+    # Clear the whole line, return to start, then print the new single-line status.
+    printf "\r\033[2K[%s] %3d%% (%d/%d) - %s" "$bar" "$percent" "$current" "$total" "$repo"
 }
 
 update_repo() {
@@ -96,7 +99,7 @@ update_repo() {
 uar() {
     folder_before_script=$(pwd)
     start_time=$(date +%s)
-    echo -e "${BOLD}🚀 Starting UAR script at $(date +"%Y-%m-%d %H:%M:%S")${RESET}"
+    echo -e "${BOLD}🚀 Updating all Repositories:${RESET}"
 
     cd "$HOME/git" || exit 1
     
@@ -151,5 +154,5 @@ uar() {
         echo -e "${RED}❌ Please commit or stash changes before re-running.${RESET}"
     fi
 
-    echo -e "\n${BOLD}✅ UAR script finished at $(date +"%Y-%m-%d %H:%M:%S")${RESET}"
+    echo -e "\n${BOLD}✅ All Repositories Updated!${RESET}"
 }
