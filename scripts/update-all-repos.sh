@@ -101,8 +101,10 @@ update_repo() {
 }
 
 uar() {
-    # Hide cursor
+    # Hide cursor during progress updates
     tput civis
+# Show cursor in case of cancel script execution
+    trap "tput cnorm; exit" INT TERM EXIT
     folder_before_script=$(pwd)
     start_time=$(date +%s)
     echo -e "${BOLD}🚀 Updating all Repositories:${RESET}"
