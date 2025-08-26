@@ -1,5 +1,8 @@
+repos_updated=0
+branches_updated=0
+
 update_repo() {
-    cd "$1"
+    cd "$1" || return
     # Check if the directory is a git repository
     if [ -d ".git" ]; then
         echo "Updating repository in $(pwd)"
@@ -7,16 +10,24 @@ update_repo() {
         git fetch --all --prune
         echo "*************************"
 
+        repo_branches_updated=0
+
         # Always update main or master branch first
         if git show-ref --quiet refs/heads/main; then
             git checkout main
-            git pull
-            echo "Updated main branch"
+            if git pull; then
+                echo "Updated main branch"
+                branches_updated=$((branches_updated + 1))
+                repo_branches_updated=$((repo_branches_updated + 1))
+            fi
             echo "*************************"
         elif git show-ref --quiet refs/heads/master; then
             git checkout master
-            git pull
-            echo "Updated master branch"
+            if git pull; then
+                echo "Updated master branch"
+                branches_updated=$((branches_updated + 1))
+                repo_branches_updated=$((repo_branches_updated + 1))
+            fi
             echo "*************************"
         fi
 
@@ -31,10 +42,18 @@ update_repo() {
             # Avoid re-pulling main or master if already updated
             if [[ "$branch" != "main" && "$branch" != "master" ]]; then
                 git checkout "$branch"
-                git pull
+                if git pull; then
+                    echo "Updated branch: $branch"
+                    branches_updated=$((branches_updated + 1))
+                    repo_branches_updated=$((repo_branches_updated + 1))
+                fi
                 echo "*************************"
             fi
         done
+
+        if [ "$repo_branches_updated" -gt 0 ]; then
+            repos_updated=$((repos_updated + 1))
+        fi
 
         echo "Returning to original branch before script"
         git checkout "$branch_before_script"
@@ -70,4 +89,6 @@ uar() {
     echo "==============================================="
     echo "UAR script finished at: $(date +"%Y-%m-%d %H:%M:%S")"
     echo "Elapsed time: ${minutes}m ${seconds}s"
+    echo "Repositories updated: $repos_updated"
+    echo "Branches updated: $branches_updated"
 }
