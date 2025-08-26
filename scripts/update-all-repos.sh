@@ -32,7 +32,8 @@ progress_bar() {
     for ((i=0; i<empty; i++)); do bar+=" "; done
 
     # Clear the whole line, return to start, then print the new single-line status.
-    printf "\r\033[2K[%s] %3d%% (%d/%d) - %s" "$bar" "$percent" "$current" "$total" "$repo"
+    printf "\r\033[2K[%s] %3d%% (%d/%d) 📂 ${BOLD}${CYAN}%s${RESET}" "$bar" "$percent" "$current" "$total" "$repo"
+
 }
 
 update_repo() {
