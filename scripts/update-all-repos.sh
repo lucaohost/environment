@@ -12,12 +12,27 @@ CYAN="\033[0;36m"
 BOLD="\033[1m"
 RESET="\033[0m"
 
+progress_bar() {
+    local current=$1
+    local total=$2
+    local width=40
+    local percent=$(( current * 100 / total ))
+    local filled=$(( width * current / total ))
+    local empty=$(( width - filled ))
+
+    # Draw progress bar
+    printf "\r["
+    for ((i=0; i<filled; i++)); do printf "█"; done
+    for ((i=0; i<empty; i++)); do printf " "; done
+    printf "] %3d%% (%d/%d)" "$percent" "$current" "$total"
+}
+
 update_repo() {
     cd "$1" || return
     if [ -d ".git" ]; then
         echo -e "\n${CYAN}🔄 Repository: ${BOLD}$(basename "$(pwd)")${RESET}"
         branch_before_script=$(git branch --show-current)
-        git fetch --all --prune
+        git fetch --all --prune >/dev/null 2>&1
 
         repo_branches_updated=0
         updated_branches=()
@@ -75,21 +90,28 @@ uar() {
 
     cd "$HOME/git" || exit 1
     
-    for dir in */; do
-        [ -d "$dir" ] && update_repo "$dir"
+    # Collect all repos first
+    repos=(*/)
+    repos+=("notes/my-notes" "notes/private-code-notes")
+    total_repos=${#repos[@]}
+    current_repo=0
+
+    for dir in "${repos[@]}"; do
+        if [ -d "$dir" ]; then
+            update_repo "$dir"
+        fi
+        current_repo=$((current_repo + 1))
+        progress_bar "$current_repo" "$total_repos"
     done
-    
-    update_repo "notes/my-notes"
-    cd ..
-    update_repo "notes/private-code-notes"
+
     cd "$folder_before_script" || exit 1
-    
+
     end_time=$(date +%s)
     elapsed=$(( end_time - start_time ))
     minutes=$(( elapsed / 60 ))
     seconds=$(( elapsed % 60 ))
 
-    echo -e "\n${BOLD}📊 Summary:${RESET}"
+    echo -e "\n\n${BOLD}📊 Summary:${RESET}"
     echo -e "   ⏱  Elapsed time: ${minutes}m ${seconds}s"
     echo -e "   📂 Repositories updated: ${GREEN}$repos_updated${RESET}"
     echo -e "   🌿 Branches updated: ${GREEN}$branches_updated${RESET}"
