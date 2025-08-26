@@ -3,6 +3,7 @@
 repos_updated=0
 branches_updated=0
 repos_with_multiple=()
+repos_with_changes=()
 
 # Colors
 GREEN="\033[0;32m"
@@ -20,17 +21,28 @@ progress_bar() {
     local filled=$(( width * current / total ))
     local empty=$(( width - filled ))
 
-    # Draw progress bar
-    printf "\r["
-    for ((i=0; i<filled; i++)); do printf "█"; done
-    for ((i=0; i<empty; i++)); do printf " "; done
-    printf "] %3d%% (%d/%d)" "$percent" "$current" "$total"
+    # Build bar string
+    local bar="["
+    for ((i=0; i<filled; i++)); do bar+="█"; done
+    for ((i=0; i<empty; i++)); do bar+=" "; done
+    bar+="]"
+
+    # Print on same line
+    printf "\r%s %3d%% (%d/%d) - %s" \
+        "$bar" "$percent" "$current" "$total" "$3"
 }
 
 update_repo() {
     cd "$1" || return
     if [ -d ".git" ]; then
-        echo -e "\n${CYAN}🔄 Repository: ${BOLD}$(basename "$(pwd)")${RESET}"
+
+        # Check for uncommitted changes
+        if [[ -n $(git status --porcelain) ]]; then
+            repos_with_changes+=("$(pwd)")
+            cd ..
+            return
+        fi
+
         branch_before_script=$(git branch --show-current)
         git fetch --all --prune >/dev/null 2>&1
 
@@ -41,8 +53,7 @@ update_repo() {
         for main_branch in main master; do
             if git show-ref --quiet refs/heads/$main_branch; then
                 git checkout "$main_branch" >/dev/null 2>&1
-                if git pull --ff-only; then
-                    echo -e "   ✅ Updated ${GREEN}$main_branch${RESET}"
+                if git pull --ff-only >/dev/null 2>&1; then
                     branches_updated=$((branches_updated + 1))
                     repo_branches_updated=$((repo_branches_updated + 1))
                     updated_branches+=("$main_branch")
@@ -61,8 +72,7 @@ update_repo() {
         for branch in $branches; do
             if [[ "$branch" != "main" && "$branch" != "master" ]]; then
                 git checkout "$branch" >/dev/null 2>&1
-                if git pull --ff-only; then
-                    echo -e "   ✅ Updated ${GREEN}$branch${RESET}"
+                if git pull --ff-only >/dev/null 2>&1; then
                     branches_updated=$((branches_updated + 1))
                     repo_branches_updated=$((repo_branches_updated + 1))
                     updated_branches+=("$branch")
@@ -98,10 +108,11 @@ uar() {
 
     for dir in "${repos[@]}"; do
         if [ -d "$dir" ]; then
+            repo_name=$(basename "$dir")
             update_repo "$dir"
         fi
         current_repo=$((current_repo + 1))
-        progress_bar "$current_repo" "$total_repos"
+        progress_bar "$current_repo" "$total_repos" "$repo_name"
     done
 
     cd "$folder_before_script" || exit 1
@@ -111,7 +122,10 @@ uar() {
     minutes=$(( elapsed / 60 ))
     seconds=$(( elapsed % 60 ))
 
-    echo -e "\n\n${BOLD}📊 Summary:${RESET}"
+    # Clear progress line
+    echo -e "\n"
+
+    echo -e "\n${BOLD}📊 Summary:${RESET}"
     echo -e "   ⏱  Elapsed time: ${minutes}m ${seconds}s"
     echo -e "   📂 Repositories updated: ${GREEN}$repos_updated${RESET}"
     echo -e "   🌿 Branches updated: ${GREEN}$branches_updated${RESET}"
@@ -127,6 +141,14 @@ uar() {
             done
         done
         echo -e "${YELLOW}⚠️  Consider cleaning up old branches.${RESET}"
+    fi
+
+    if [ ${#repos_with_changes[@]} -gt 0 ]; then
+        echo -e "\n${RED}❌ Repositories with uncommitted changes (not updated):${RESET}"
+        for repo in "${repos_with_changes[@]}"; do
+            echo " - $(basename "$repo")"
+        done
+        echo -e "${RED}❌ Please commit or stash changes before re-running.${RESET}"
     fi
 
     echo -e "\n${BOLD}✅ UAR script finished at $(date +"%Y-%m-%d %H:%M:%S")${RESET}"
