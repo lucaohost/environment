@@ -104,7 +104,7 @@ uar() {
     # Hide cursor during progress updates
     tput civis
     # Back to show cursor in case of exit terminal during script execution
-    trap "tput cnorm; exit" INT TERM EXIT
+    trap "tput cnorm" SIGINT INT TERM EXIT
     folder_before_script=$(pwd)
     start_time=$(date +%s)
     echo -e "${BOLD}🚀 Updating all Repositories:${RESET}"
