@@ -103,7 +103,7 @@ update_repo() {
 uar() {
     # Hide cursor during progress updates
     tput civis
-# Show cursor in case of cancel script execution
+    # Back to show cursor in case of exit terminal during script execution
     trap "tput cnorm; exit" INT TERM EXIT
     folder_before_script=$(pwd)
     start_time=$(date +%s)
@@ -125,6 +125,9 @@ uar() {
             update_repo "$dir"
         fi
     done
+
+    # Print 100% complete progress bar
+    progress_bar "$total_repos" "$total_repos" "environment"
 
     cd "$folder_before_script" || exit 1
 
