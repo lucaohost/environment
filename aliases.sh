@@ -1,6 +1,7 @@
 source $HOME/git/environment/scripts/variables.sh
 
 # c     = Codes (Directory with all Projects | Tab to autocomplete)
+# vs    = Open project in VSCode (Tab to autocomplete)
 source $HOME/git/environment/scripts/code-dir.sh
 
 # rmb   = Remember my Bashes

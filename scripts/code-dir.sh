@@ -1,9 +1,18 @@
 c() {
-    cd $HOME/git
-    directory=$1
-    if [ -n "$directory" ]; then
-        cd $directory
-    fi
+  cd $HOME/git
+  directory=$1
+  if [ -n "$directory" ]; then
+    cd $directory
+  fi
+}
+
+vs() {
+  cd $HOME/git
+  directory=$1
+  if [ -n "$directory" ]; then
+      cd $directory
+      code .
+  fi
 }
 
 _code_dir_complete() {
@@ -17,3 +26,4 @@ _code_dir_complete() {
 }
 
 complete -o default -F _code_dir_complete c
+complete -o default -F _code_dir_complete vs
