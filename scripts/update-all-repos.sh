@@ -157,7 +157,7 @@ uar() {
         echo -e "${YELLOW}⚠️  Consider cleaning up old branches.${RESET}"
     fi
 
-    if [ ${#repos_with_changes[@]} -gt 0 ]; then
+    if [ ${#repos_with_changes[@]} -gt 0 ] && [ "${repos_with_changes[0]}" != "0" ]; then
         echo -e "\n${RED}❌ Repositories with uncommitted changes (not updated):${RESET}"
         for repo in "${repos_with_changes[@]}"; do
             echo " - $(basename "$repo")"
