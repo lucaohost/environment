@@ -145,7 +145,7 @@ uar() {
     echo -e "   🌿 Branches updated: ${GREEN}$branches_updated${RESET}"
 
     if [ ${#repos_with_multiple[@]} -gt 0 ]; then
-        echo -e "\n${YELLOW}🔀  Repositories with multiple updated branches:${RESET}"
+        echo -e "\n${YELLOW}🔀 Repositories with multiple updated branches:${RESET}"
         for entry in "${repos_with_multiple[@]}"; do
             repo_path="${entry%%:*}"
             branches="${entry#*:}"
