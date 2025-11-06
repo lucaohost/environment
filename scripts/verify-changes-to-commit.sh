@@ -5,7 +5,7 @@ verify_repo() {
 
     if [ -d ".git" ]; then
         verified=1
-        if ! git diff --quiet || ! git diff --cached --quiet; then
+        if ! command git diff --quiet || ! command git diff --cached --quiet; then
             has_changes=1
             repo_name=$(basename "$(pwd)")
             echo ""
@@ -14,7 +14,7 @@ verify_repo() {
             echo "   Path: $(pwd)"
             echo "--------------------------------------------------"
             echo "🔴 Uncommitted changes:"
-            git status -s
+            command git status -s
             echo "=================================================="
         fi
     fi

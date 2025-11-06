@@ -43,23 +43,23 @@ update_repo() {
     if [ -d ".git" ]; then
 
         # Check for uncommitted changes
-        if [[ -n $(git status --porcelain) ]]; then
+        if [[ -n $(command git status --porcelain) ]]; then
             repos_with_changes+=("$(pwd)")
             cd ..
             return
         fi
 
-        branch_before_script=$(git branch --show-current)
-        git fetch --all --prune >/dev/null 2>&1
+        branch_before_script=$(command git branch --show-current)
+        command git fetch --all --prune >/dev/null 2>&1
 
         repo_branches_updated=0
         updated_branches=()
 
         # Try to update main or master
         for main_branch in main master; do
-            if git show-ref --quiet refs/heads/$main_branch; then
-                git checkout "$main_branch" >/dev/null 2>&1
-                if git pull --ff-only >/dev/null 2>&1; then
+            if command git show-ref --quiet refs/heads/$main_branch; then
+                command git checkout "$main_branch" >/dev/null 2>&1
+                if command git pull --ff-only >/dev/null 2>&1; then
                     branches_updated=$((branches_updated + 1))
                     repo_branches_updated=$((repo_branches_updated + 1))
                     updated_branches+=("$main_branch")
@@ -69,16 +69,16 @@ update_repo() {
         done
 
         # Remove local branches without remote reference
-        git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D >/dev/null 2>&1
+        command git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r command git branch -D >/dev/null 2>&1
 
         # Get personal/professional branches
-        branches=$(git for-each-ref --format='%(refname:short) %(authorname) %(authoremail)' refs/heads/ | \
+        branches=$(command git for-each-ref --format='%(refname:short) %(authorname) %(authoremail)' refs/heads/ | \
             grep -E "$PROFESSIONAL_EMAIL|$PERSONAL_EMAIL" | awk '{print $1}')
 
         for branch in $branches; do
             if [[ "$branch" != "main" && "$branch" != "master" ]]; then
-                git checkout "$branch" >/dev/null 2>&1
-                if git pull --ff-only >/dev/null 2>&1; then
+                command git checkout "$branch" >/dev/null 2>&1
+                if command git pull --ff-only >/dev/null 2>&1; then
                     branches_updated=$((branches_updated + 1))
                     repo_branches_updated=$((repo_branches_updated + 1))
                     updated_branches+=("$branch")
@@ -94,7 +94,7 @@ update_repo() {
             repos_with_multiple+=("$(pwd):${updated_branches[*]}")
         fi
 
-        git checkout "$branch_before_script" >/dev/null 2>&1
+        command git checkout "$branch_before_script" >/dev/null 2>&1
     fi
     cd ..
 }

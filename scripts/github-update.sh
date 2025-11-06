@@ -18,16 +18,16 @@ commit_and_reflect() {
 
 git_commit_and_push() {
     local commit_msg="$1"
-    local repo_name=$(basename "$(git rev-parse --show-toplevel)")
+    local repo_name=$(basename "$(command git rev-parse --show-toplevel)")
     set_git_email_based_on_hostname
-    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    local repo_owner=$(command git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
     if [ "$repo_owner" == "lucaohost" ]; then
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
+        command git config --global user.email "$PERSONAL_EMAIL"
+        command git config --local user.email "$PERSONAL_EMAIL"
     fi
-    git add -A
-    git commit -m "$(printf "%b" "$commit_msg")"
-    git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+    command git add -A
+    command git commit -m "$(printf "%b" "$commit_msg")"
+    command git push --set-upstream origin $(command git rev-parse --abbrev-ref HEAD)
     set_git_email_based_on_hostname
 }
 
@@ -40,13 +40,13 @@ reflect_last_commit_on_personal_github() {
         return 1
     fi
     
-    local github_username=$(git remote get-url origin | sed -E 's#.*github.com[:/](.*)/.*#\1#')
+    local github_username=$(command git remote get-url origin | sed -E 's#.*github.com[:/](.*)/.*#\1#')
     if [ "$github_username" == "lucaohost" ]; then
         echo "Warning: Stopping script, it doesn't reflect on personal repositories."
         return 1
     fi
 
-    commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
+    commit_info=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(command git symbolic-ref --short HEAD)|%s|$(basename $(command git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     if [ -z "$commit_info" ]; then
         echo "Error: Commit info is empty. Stopping script."
         return 1
@@ -82,66 +82,66 @@ reflect_last_commit_on_personal_github() {
 
     current_dir=$(pwd)
     cd $HOME/git/git-work-commits/
-    git config --global user.email $PERSONAL_EMAIL
-    git config --local user.email $PERSONAL_EMAIL
-    git add -A
-    git commit -m "$(printf "%b" "$commit_msg")"
-    git push
+    command git config --global user.email $PERSONAL_EMAIL
+    command git config --local user.email $PERSONAL_EMAIL
+    command git add -A
+    command git commit -m "$(printf "%b" "$commit_msg")"
+    command git push
     cd $current_dir
     set_git_email_based_on_hostname
 }
 
 gp () {
-    commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
+    commit_info=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(command git symbolic-ref --short HEAD)|%s|$(basename $(command git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
-    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    local repo_owner=$(command git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
     if [ "$repo_owner" == "lucaohost" ]; then
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
+        command git config --global user.email "$PERSONAL_EMAIL"
+        command git config --local user.email "$PERSONAL_EMAIL"
     fi
-    git push
+    command git push
     reflect_last_commit_on_personal_github "$commitMsg"
 }
 
 gpp () {
-    commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
+    commit_info=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(command git symbolic-ref --short HEAD)|%s|$(basename $(command git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
-    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    local repo_owner=$(command git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
     if [ "$repo_owner" == "lucaohost" ]; then
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
+        command git config --global user.email "$PERSONAL_EMAIL"
+        command git config --local user.email "$PERSONAL_EMAIL"
     fi
-    git push --force
+    command git push --force
     reflect_last_commit_on_personal_github "$commitMsg"
 }
 
 gpu () {
-    commit_info=$(git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(git symbolic-ref --short HEAD)|%s|$(basename $(git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
+    commit_info=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(command git symbolic-ref --short HEAD)|%s|$(basename $(command git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
-    local repo_owner=$(git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+    local repo_owner=$(command git remote get-url origin | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
     if [ "$repo_owner" == "lucaohost" ]; then
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
+        command git config --global user.email "$PERSONAL_EMAIL"
+        command git config --local user.email "$PERSONAL_EMAIL"
     fi
-    git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+    command git push --set-upstream origin $(command git rev-parse --abbrev-ref HEAD)
     reflect_last_commit_on_personal_github "$commitMsg"
 }
 
 gln() {
     local before_script_directory=$(pwd)
     cd $HOME/git/notes/private-code-notes
-    git pull
+    command git pull
     cd $HOME/git/notes/my-notes
-    git pull
+    command git pull
     cd $before_script_directory
 }
 
 gsn() {
     local before_script_directory=$(pwd)
     cd $HOME/git/notes/my-notes
-    git status
+    command git status
     cd $HOME/git/notes/private-code-notes
-    git status
+    command git status
     cd $before_script_directory
 }
 
@@ -152,12 +152,42 @@ notes() {
     cd $before_script_directory
 }
 
+git() {
+    # Intercept 'git push' command and call reflect_last_commit_on_personal_github after successful push
+    if [ "$1" = "push" ]; then
+        # Get commit info before push (similar to gp function)
+        commit_info=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(command git symbolic-ref --short HEAD)|%s|$(basename $(command git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 2>/dev/null | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
+        
+        # Handle email configuration for personal repos
+        local repo_owner=$(command git remote get-url origin 2>/dev/null | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+        if [ "$repo_owner" == "lucaohost" ]; then
+            command git config --global user.email "$PERSONAL_EMAIL" 2>/dev/null
+            command git config --local user.email "$PERSONAL_EMAIL" 2>/dev/null
+        fi
+        
+        # Execute the actual git push command with all arguments
+        command git "$@"
+        local push_exit_code=$?
+        
+        # If push was successful and we have commit info, reflect the commit
+        if [ $push_exit_code -eq 0 ] && [ -n "$commit_info" ]; then
+            IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+            reflect_last_commit_on_personal_github "$commitMsg"
+        fi
+        
+        return $push_exit_code
+    else
+        # For all other git commands, just execute them normally
+        command git "$@"
+    fi
+}
+
 set_git_email_based_on_hostname() {
     if [[ "$(hostname)" == "18049-nb" ]]; then
-        git config --global user.email "$PROFESSIONAL_EMAIL"
-        git config --local user.email "$PROFESSIONAL_EMAIL"
+        command git config --global user.email "$PROFESSIONAL_EMAIL"
+        command git config --local user.email "$PROFESSIONAL_EMAIL"
     else 
-        git config --global user.email "$PERSONAL_EMAIL"
-        git config --local user.email "$PERSONAL_EMAIL"
+        command git config --global user.email "$PERSONAL_EMAIL"
+        command git config --local user.email "$PERSONAL_EMAIL"
     fi
 }
