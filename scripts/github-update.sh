@@ -46,6 +46,7 @@ reflect_last_commit_on_personal_github() {
         return 1
     fi
 
+    # Get commit info with subject only for metadata
     commit_info=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%h|%ae|%ad|$(command git symbolic-ref --short HEAD)|%s|$(basename $(command git rev-parse --show-toplevel))" --abbrev=8 --date=format:'%Y-%m-%dT%H:%M:%S-03:00' -n 1 | awk -F'|' 'BEGIN {OFS="|"} { if (index($5, " -")) $5 = substr($5, 1, index($5, " -") - 1); print $0 }')
     if [ -z "$commit_info" ]; then
         echo "Error: Commit info is empty. Stopping script."
@@ -53,6 +54,14 @@ reflect_last_commit_on_personal_github() {
     fi
     # Extract commit info
     IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
+    
+    # If commit_msg parameter is empty or only contains the subject, get the full message
+    if [ -z "$commit_msg" ] || [ "$commit_msg" == "$commitMsg" ]; then
+        # Get the full commit message (including body)
+        commit_msg=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%B" -n 1)
+        # Remove trailing newline if present
+        commit_msg=$(echo -n "$commit_msg")
+    fi
 
     local college_repo="PCVS"
     if [ "$repo_name" == "$college_repo" ]; then
@@ -100,7 +109,9 @@ gp () {
         command git config --local user.email "$PERSONAL_EMAIL"
     fi
     command git push
-    reflect_last_commit_on_personal_github "$commitMsg"
+    # Get full commit message
+    full_commit_msg=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%B" -n 1)
+    reflect_last_commit_on_personal_github "$full_commit_msg"
 }
 
 gpp () {
@@ -112,7 +123,9 @@ gpp () {
         command git config --local user.email "$PERSONAL_EMAIL"
     fi
     command git push --force
-    reflect_last_commit_on_personal_github "$commitMsg"
+    # Get full commit message
+    full_commit_msg=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%B" -n 1)
+    reflect_last_commit_on_personal_github "$full_commit_msg"
 }
 
 gpu () {
@@ -124,7 +137,9 @@ gpu () {
         command git config --local user.email "$PERSONAL_EMAIL"
     fi
     command git push --set-upstream origin $(command git rev-parse --abbrev-ref HEAD)
-    reflect_last_commit_on_personal_github "$commitMsg"
+    # Get full commit message
+    full_commit_msg=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%B" -n 1)
+    reflect_last_commit_on_personal_github "$full_commit_msg"
 }
 
 gln() {
@@ -172,7 +187,13 @@ git() {
         # If push was successful and we have commit info, reflect the commit
         if [ $push_exit_code -eq 0 ] && [ -n "$commit_info" ]; then
             IFS='|' read -r hashCommit author date branch commitMsg repo_name <<< "$commit_info"
-            reflect_last_commit_on_personal_github "$commitMsg"
+            # Get full commit message
+            full_commit_msg=$(command git log --author="$PROFESSIONAL_EMAIL" --pretty=format:"%B" -n 1 2>/dev/null)
+            if [ -n "$full_commit_msg" ]; then
+                reflect_last_commit_on_personal_github "$full_commit_msg"
+            else
+                reflect_last_commit_on_personal_github "$commitMsg"
+            fi
         fi
         
         return $push_exit_code
