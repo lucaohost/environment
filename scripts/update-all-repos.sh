@@ -103,7 +103,8 @@ uar() {
     # Hide cursor during progress updates
     tput civis
     # Back to show cursor in case of exit terminal during script execution
-    trap "tput cnorm" SIGINT INT TERM EXIT
+    # Handle Ctrl+C to cancel the script
+    trap "tput cnorm; echo -e '\n\n${RED}❌ UAR script cancelled by user${RESET}'; exit 130" SIGINT INT TERM
     folder_before_script=$(pwd)
     start_time=$(date +%s)
     echo -e "${BOLD}🚀 Updating all Repositories:${RESET}"
