@@ -49,24 +49,6 @@ vcc() {
         fi
     done
 
-    verify_repo "notes/my-notes"
-    result=$?
-    if (( result & 1 )); then
-        repos_verified=$((repos_verified + 1))
-    fi
-    if (( result & 2 )); then
-        repos_with_changes=$((repos_with_changes + 1))
-    fi
-
-    verify_repo "notes/private-code-notes"
-    result=$?
-    if (( result & 1 )); then
-        repos_verified=$((repos_verified + 1))
-    fi
-    if (( result & 2 )); then
-        repos_with_changes=$((repos_with_changes + 1))
-    fi
-
     cd "$folder_before_script" || return
     echo ""
     echo "✅ Verification complete!"

@@ -142,24 +142,6 @@ gpu () {
     reflect_last_commit_on_personal_github "$full_commit_msg"
 }
 
-gln() {
-    local before_script_directory=$(pwd)
-    cd $HOME/git/notes/private-code-notes
-    command git pull
-    cd $HOME/git/notes/my-notes
-    command git pull
-    cd $before_script_directory
-}
-
-gsn() {
-    local before_script_directory=$(pwd)
-    cd $HOME/git/notes/my-notes
-    command git status
-    cd $HOME/git/notes/private-code-notes
-    command git status
-    cd $before_script_directory
-}
-
 notes() {
     local before_script_directory=$(pwd)
     c notes

@@ -113,7 +113,6 @@ uar() {
     
     # Collect all repos first
     repos=(*/)
-    repos+=("notes/my-notes" "notes/private-code-notes")
     total_repos=${#repos[@]}
     current_repo=0
 
