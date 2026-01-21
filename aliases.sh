@@ -93,6 +93,9 @@ alias gsl="git stash list"
 # gb    = git branch
 alias gb="git branch"
 
+# gpv   = Git Push Version (Add all changes and commit with incremented version)
+source $HOME/git/environment/scripts/git-push-version.sh
+
 # uar   = Update All Repositories
 source $HOME/git/environment/scripts/update-all-repos.sh
 
