@@ -43,7 +43,7 @@ function gpv() {
     git add -A
 
     # Commit with the new semantic version
-    git commit -m "feat: release v$major.$minor.$patch"
+    git commit -m "feat: Release v$major.$minor.$patch"
 
     gpu
 }
