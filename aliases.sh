@@ -34,9 +34,6 @@ alias eba="nano ~/.bashrc"
 # gp    = Push commits 
 # gpp   = Push commits forcefully
 # gpu   = git push --set-upstream origin $current_branch
-# gln   = git pull Notes (folders my-notes and private-code-notes)
-# gpn   = git push Notes (folders my-notes and private-code-notes)
-# gsn   = git status Notes (folders my-notes and private-code-notes)
 # notes = Open Notes Project on VSCode
 source $HOME/git/environment/scripts/github-update.sh
 
@@ -108,8 +105,8 @@ source $HOME/git/environment/scripts/open-dir.sh
 # hist  = Print the terminal's history
 alias hist="history"
 
-# dhist = Dump terminal's history in ~/git/notes/private-code-notes/terminal-history.txt
-alias dhist="history > ~/git/notes/private-code-notes/terminal-history.txt"
+# dhist = Dump terminal's history in ~/git/private-codes/terminal-history.txt
+alias dhist="history > ~/git/private-codes/terminal-history.txt"
 
 # jver  = Change the Java Version
 alias jver="sudo update-alternatives --config java"
@@ -151,4 +148,4 @@ source $HOME/git/environment/scripts/tab.sh
 # leet = Create folder/file to store a LeetCode problem | Usage: leet my-example
 source $HOME/git/environment/scripts/leet.sh
 
-source ~/git/notes/private-code-notes/private-aliases.sh
+source ~/git/private-codes/private-aliases.sh
