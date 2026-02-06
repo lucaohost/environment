@@ -58,6 +58,9 @@ alias gcb='git checkout -b'
 # gco   = Checkout to another branch
 alias gco='git checkout'
 
+# review = Review a remote branch | Usage: review branch-name | Creates review branch, merges without committing, and shows changes
+source $HOME/git/environment/scripts/review.sh
+
 source $HOME/git/environment/scripts/git-branch-complete.sh
 
 # gaa   = Add all changes to commit
