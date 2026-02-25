@@ -148,7 +148,7 @@ alias glog='git log'
 # tabx  = Open new Terminal Tab and Close the current one
 source $HOME/git/environment/scripts/tab.sh
 
-# leet = Create folder/file to store a LeetCode problem | Usage: leet my-example
+# leet  = Create folder/files to store a LeetCode problem | Usage: leet MyExample
 source $HOME/git/environment/scripts/leet.sh
 
 # cd = Without passing directy, goes to $HOME
