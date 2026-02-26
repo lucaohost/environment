@@ -151,6 +151,6 @@ source $HOME/git/environment/scripts/tab.sh
 # leet  = Create folder/files to store a LeetCode problem | Usage: leet MyExample
 source $HOME/git/environment/scripts/leet.sh
 
-# cd = Without passing directy, goes to $HOME
+# cd    = Without passing directory as argument, it goes to $HOME
 
 source ~/git/private-codes/private-aliases.sh
