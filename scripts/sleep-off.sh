@@ -1,28 +1,39 @@
-off() {
+_off_resolve_seconds() {
     if [[ "$1" == *":"* ]]; then
-        target_time="$1"
-        target_timestamp=$(date -d "$target_time" +%s)
-        current_timestamp=$(date +%s)
-        seconds=$((target_timestamp - current_timestamp))
+        local target_time="$1"
+        local target_timestamp=$(date -d "$target_time" +%s)
+        local current_timestamp=$(date +%s)
+        local seconds=$((target_timestamp - current_timestamp))
         if [ $seconds -lt 0 ]; then
-            # If the time is in the past, assume it's for tomorrow
             target_timestamp=$(date -d "tomorrow $target_time" +%s)
             seconds=$((target_timestamp - current_timestamp))
         fi
     else
-        if [[ -z "$1" ]]; then
-            minutes=0
-        else
-            minutes=$1
-        fi
-        seconds=$((minutes * 60))
+        local minutes=${1:-0}
+        local seconds=$((minutes * 60))
     fi
+    echo "$seconds"
+}
 
+_off_execute() {
     if [[ "$OPERATIONAL_SYSTEM" == "WSL" ]]; then
-        off_windows "$seconds"
+        off_windows "$1"
     else
-        off_ubuntu "$seconds"
+        off_ubuntu "$1"
     fi
+}
+
+off() {
+    local seconds
+    seconds=$(_off_resolve_seconds "$1")
+
+    echo "Desligando... Pressione Ctrl+C para cancelar."
+    for i in {5..1}; do
+        echo "$i..."
+        sleep 1
+    done
+
+    _off_execute "$seconds"
 }
 
 sextou() {
@@ -79,7 +90,7 @@ sextou() {
         echo "$i"
         sleep 1
     done
-    off
+    _off_execute 0
 }
 
 pai_ta_off() {
