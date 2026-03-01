@@ -151,6 +151,9 @@ source $HOME/git/environment/scripts/tab.sh
 # leet  = Create folder/files to store a LeetCode problem | Usage: leet MyExample
 source $HOME/git/environment/scripts/leet.sh
 
+# clean-zone-identifiers = Delete all Zone.Identifier files recursively in the current directory
+source $HOME/git/environment/scripts/clean-zone-identifiers.sh
+
 # cd = Without passing directy, goes to $HOME
 
 source ~/git/private-codes/private-aliases.sh
