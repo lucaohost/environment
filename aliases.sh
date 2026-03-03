@@ -37,8 +37,8 @@ alias eba="nano ~/.bashrc"
 # notes = Open Notes Project on VSCode
 source $HOME/git/environment/scripts/github-update.sh
 
-# cl    = Clear
-alias cl=clear
+# cl    = Clear (hides content, moves cursor to top without deleting)
+alias cl='printf "\n%.0s" {1..35}; printf "\033[H"'
 
 # gcm   = Goes to the main/master (default branch)
 source $HOME/git/environment/scripts/git-checkout-main.sh
