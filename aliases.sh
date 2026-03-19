@@ -123,7 +123,7 @@ export DONT_PROMPT_WSL_INSTALL=true
 # intj  = Open InteliJ
 alias intj='(intellij-idea-community > /dev/null 2>&1 &)'
 
-# downl = Open Downloads folder
+# down = Open Downloads folder
 source $HOME/git/environment/scripts/open-downloads.sh
 
 # vid   = Open Videos folder
