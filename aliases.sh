@@ -154,6 +154,9 @@ source $HOME/git/environment/scripts/leet.sh
 # clean-zone-identifiers = Delete all Zone.Identifier files recursively in the current directory
 source $HOME/git/environment/scripts/clean-zone-identifiers.sh
 
+# start = Start the day with tompero
+alias start="tompero start-day"
+
 # cd    = Without passing directory as argument, it goes to $HOME
 
 source ~/git/private-codes/private-aliases.sh
