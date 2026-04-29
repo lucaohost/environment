@@ -157,6 +157,12 @@ source $HOME/git/environment/scripts/clean-zone-identifiers.sh
 # start = Start the day with tompero
 alias start="tompero start-day"
 
+# fom   = cd ~/git/fleet-optimization-manager
+alias fom="cd ~/git/fleet-optimization-manager"
+
+# fo    = cd ~/git/fleet-optimizer
+alias fo="cd ~/git/fleet-optimizer"
+
 # cd    = Without passing directory as argument, it goes to $HOME
 
 source ~/git/private-codes/private-aliases.sh
