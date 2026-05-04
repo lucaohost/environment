@@ -1,8 +1,14 @@
 c() {
-  cd $HOME/git
   directory=$1
-  if [ -n "$directory" ]; then
-    cd $directory
+  if [ "$directory" = "claude" ]; then
+    cd $HOME/.claude
+  elif [ "$directory" = "codex" ]; then
+    cd $HOME/.config/codex
+  else
+    cd $HOME/git
+    if [ -n "$directory" ]; then
+      cd $directory
+    fi
   fi
 }
 
@@ -21,8 +27,8 @@ _code_dir_complete() {
   current_word="${current_word%/}"
   local directory=$(dirname "$HOME/git/environment")
   local directories=$(find "$directory" -maxdepth 1 -mindepth 1 -type d -name "${current_word}*" -exec basename {} \;)
-  # Set completions to available directories
-  COMPREPLY=($(compgen -W "$directories" -- "$current_word"))
+  # Set completions to available directories (including special "claude" entry)
+  COMPREPLY=($(compgen -W "$directories claude codex" -- "$current_word"))
 }
 
 complete -o default -F _code_dir_complete c
