@@ -3,9 +3,9 @@ verify_repo() {
     local verified=0
     local has_changes=0
 
-    if [ -d ".git" ]; then
+    if [ -e ".git" ] && command git rev-parse --git-dir >/dev/null 2>&1; then
         verified=1
-        if ! command git diff --quiet || ! command git diff --cached --quiet; then
+        if [ -n "$(command git status --porcelain)" ]; then
             has_changes=1
             repo_name=$(basename "$(pwd)")
             echo ""
