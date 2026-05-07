@@ -150,6 +150,21 @@ notes() {
 }
 
 git() {
+    # Intercept 'git commit' to ensure correct email is set before committing
+    if [ "$1" = "commit" ]; then
+        local repo_owner=$(command git remote get-url origin 2>/dev/null | sed -E 's#.*/([^/]+)/[^/]+(\.git)?#\1#')
+        if [ "$repo_owner" = "lucaohost" ]; then
+            command git config --global user.email "$PERSONAL_EMAIL" 2>/dev/null
+            command git config --local user.email "$PERSONAL_EMAIL" 2>/dev/null
+        else
+            set_git_email_based_on_hostname
+        fi
+        command git "$@"
+        local commit_exit_code=$?
+        set_git_email_based_on_hostname
+        return $commit_exit_code
+    fi
+
     # Intercept 'git push' command and call reflect_last_commit_on_personal_github after successful push
     if [ "$1" = "push" ]; then
         # Get commit info before push (similar to gp function)
