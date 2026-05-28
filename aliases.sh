@@ -169,3 +169,5 @@ alias fo="cd ~/git/fleet-optimizer"
 # cd    = Without passing directory as argument, it goes to $HOME
 
 source ~/git/private-codes/private-aliases.sh
+
+source ~/git/environment/scripts/alias-tip.sh
