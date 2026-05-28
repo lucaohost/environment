@@ -105,7 +105,7 @@ source $HOME/git/environment/scripts/update-all-repos.sh
 # vcc   = Verify Changes to Commit in All Repositories
 source $HOME/git/environment/scripts/verify-changes-to-commit.sh
 
-# open  = Open current directory in explorer
+# open  = Open current directory in file explorer GUI
 source $HOME/git/environment/scripts/open-dir.sh
 
 # hist  = Print the terminal's history
@@ -171,3 +171,6 @@ alias fo="cd ~/git/fleet-optimizer"
 source ~/git/private-codes/private-aliases.sh
 
 source ~/git/environment/scripts/alias-tip.sh
+
+# --help support for all documented aliases and functions
+source ~/git/environment/scripts/alias-help.sh
