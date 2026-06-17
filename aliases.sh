@@ -171,6 +171,14 @@ alias fo="cd ~/git/fleet-optimizer"
 # anki  = Write clipboard content to ~/anki.txt | Usage: copy text, then type: anki
 anki() { xclip -selection clipboard -o > ~/anki.txt; }
 
+# killbeep = Stop Claude notification beeps and clean up related processes/pidfiles
+killbeep() {
+  pkill -9 -f 'pw-play.*complete.oga'
+  pkill -9 -f 'claude_notification_loop'
+  pkill -9 -f 'xinput test-xi2'
+  rm -f /tmp/claude_notification_loop.pid /tmp/claude_notification_watcher.pid
+}
+
 source ~/git/private-codes/private-aliases.sh
 
 source ~/git/environment/scripts/alias-tip.sh
