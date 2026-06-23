@@ -183,5 +183,5 @@ source ~/git/private-codes/private-aliases.sh
 
 source ~/git/environment/scripts/alias-tip.sh
 
-# --help support for all documented aliases and functions
+# --help support for all documented aliases and functions | Usage: anyAlias --help
 source ~/git/environment/scripts/alias-help.sh
