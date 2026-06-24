@@ -173,10 +173,16 @@ anki() { xclip -selection clipboard -o > ~/anki.txt; }
 
 # killb = Stop Claude notification beeps and clean up related processes/pidfiles
 killb() {
-  pkill -9 -f 'pw-play.*complete.oga'
-  pkill -9 -f 'claude_notification_loop'
-  pkill -9 -f 'xinput test-xi2'
-  rm -f /tmp/claude_notification_loop.pid /tmp/claude_notification_watcher.pid
+  local errors=0
+  pkill -9 -f 'pw-play.*complete.oga' 2>/dev/null || true
+  pkill -9 -f 'claude_notification_loop' 2>/dev/null || true
+  pkill -9 -f 'xinput test-xi2' 2>/dev/null || true
+  rm -f /tmp/claude_notification_loop.pid /tmp/claude_notification_watcher.pid || errors=$((errors + 1))
+  if [ $errors -eq 0 ]; then
+    echo "killb: processos encerrados com sucesso."
+  else
+    echo "killb: erro ao remover arquivos pid." >&2
+  fi
 }
 
 source ~/git/private-codes/private-aliases.sh
